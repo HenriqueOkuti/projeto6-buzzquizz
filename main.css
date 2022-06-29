@@ -2,9 +2,72 @@
     FONTS
 =======================*/
 
-@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 
 /*=======================
-    MOBILE LAYOUT
+    LAYOUT
 =======================*/
+
+html {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.header {
+
+    position: sticky;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 69px;
+
+    background-color: #EC362D;
+
+}
+
+.header .header_titulo {
+
+    font-weight: bold;
+    font-size: 37px;
+    line-height: 43px;
+
+
+    color: #FFF;
+
+} 
+
+.conteudo {
+
+    margin: 80px 0 0 0;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.caixa_usuario {
+
+    height: 180px;
+    width: 70%;
+
+    border: 2px dashed #D4D4D4;
+    border-radius: 5px;
+
+
+}
+
+.caixa_geral {
+
+    margin: 80px 0 0 0;
+    width: 70%;
+    height: 500px; /* Ajustar quando importar dados */
+
+    background-color: lightblue;
+
+
+}

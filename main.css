@@ -11,8 +11,8 @@
 
 html {
     font-family: 'Roboto', sans-serif;
+    background-color: #E5E5E5;
 }
-
 
 .header {
 
@@ -26,7 +26,7 @@ html {
     height: 69px;
 
     background-color: #EC362D;
-
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .header .header_titulo {
@@ -70,4 +70,59 @@ html {
     background-color: lightblue;
 
 
+}
+
+/*Criação quizz:*/
+
+.informacoes-basicas, .caracteristicas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.informacoes-basicas>h2{
+    font-size: 23px;
+    margin-top: 70px;
+    margin-bottom: 27px;
+    font-weight: 700;
+}
+
+.caracteristicas>input {
+    width: 564px;
+    height: 46px;
+    text-align: left;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 10px;
+    border: solid 1px #D1D1D1;
+    border-radius: 5px;
+    padding-left: 20px;
+}
+
+.caracteristicas>input::placeholder{
+    color: #D1D1D1;
+}
+
+.caracteristicas {
+    width: 600px;
+    height: 256px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
+.botao-continuar {
+    width: 370px;
+    height: 54px;
+    margin-top: 85px;
+    background-color:#EC362D;
+    color: #FFF5F4;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 21px;
+}
+
+.escondido {
+    display: none;
 }

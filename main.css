@@ -53,7 +53,7 @@ html {
 .caixa_usuario {
 
     height: 180px;
-    width: 70%;
+    width: 75%;
 
     border: 2px dashed #D4D4D4;
     border-radius: 5px;
@@ -64,10 +64,82 @@ html {
 .caixa_geral {
 
     margin: 80px 0 0 0;
-    width: 70%;
-    height: 500px; /* Ajustar quando importar dados */
+    width: 75%;
+    height: auto; 
 
-    background-color: lightblue;
+    /*background-color: lightblue;*/
 
 
 }
+
+.caixa_geral_titulo {
+
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000;
+
+}
+
+.caixa_geral_lista {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+
+
+.caixa_geral_quizz {
+
+    width: 341px;
+    height: 181px;
+
+    position: relative;
+
+    margin: 2% 0 0 0;
+    
+}
+
+.caixa_geral_quizz img {
+    height: 100%;
+    width: 100%;
+}
+
+.quizz_background {
+
+    position: absolute;
+    z-index: 0;
+
+    object-fit: cover;
+
+}
+
+.quizz_titulo {
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    position: relative;
+    /*top: 70%;
+    left: 5%;*/
+    z-index: 1;
+
+    padding: 0 5% 5% 5%;
+
+
+    
+    font-size: 19px;
+
+    word-break: break-word;
+
+    color: #FFF;
+
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%)
+
+}
+
+.quizz_titulo span{}

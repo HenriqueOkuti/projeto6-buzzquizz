@@ -46,7 +46,6 @@ html {
 
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
 
 }
@@ -208,6 +207,7 @@ html {
     justify-content: space-between;
     align-items: center;
     padding: 0px 20px;
+
 }
 
 .adicionar-perguntas>ion-icon{

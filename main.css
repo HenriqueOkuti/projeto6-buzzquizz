@@ -320,14 +320,21 @@ html {
     padding-left: 10%;
 }
 
-.correto {
+.selecionado {
 
 }
 
-.incorreto {
+.nao_selecionado {
     opacity: 0.2;
 }
 
+.correto {
+    color: green;
+}
+
+.incorreto {
+    color: red;
+}
 
 /*Criação quizz:*/
 

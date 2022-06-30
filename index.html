@@ -39,16 +39,22 @@
     <div class="informacoes-basicas escondido">
         <h2>Comece pelo começo</h2>
         <div class="caracteristicas">
-            <input type="text" placeholder="Título do seu quizz">
-            <input type="text" placeholder="URL da imagem do seu quizz">
-            <input type="text" placeholder="Quantidade de perguntas do quizz">
-            <input type="text" placeholder="Quantidade de níveis do quizz">
+            <input class="titulo-quizz"type="text" placeholder="Título do seu quizz">
+            <input class="imagem-quizz" type="text" placeholder="URL da imagem do seu quizz">
+            <input class="qtd-perguntas"type="text" placeholder="Quantidade de perguntas do quizz">
+            <input class="qtd-niveis" type="text" placeholder="Quantidade de níveis do quizz">
         </div>
-        <button class="botao-continuar">Prosseguir para criar perguntas</button>
+        <button class="botao-continuar" onclick="prosseguirParaCriarPerguntas()">Prosseguir para criar perguntas</button>
+    </div>
+
+    <div class="criar-perguntas escondido">
+        <h2>Crie suas perguntas</h2>
+        
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
+    <script src="script2.js"></script>
 
     </body>
 

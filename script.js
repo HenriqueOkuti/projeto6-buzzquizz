@@ -165,7 +165,7 @@ function comeca_quizz(quizz) {
 
 function quizz_option_select(element, question, option, total_respostas_pergunta) {
     //console.log(scores)
-    //console.log(gabarito_quizz);
+    console.log(gabarito_quizz);
 
     let answer_status = false;
     user_options.push(option);
@@ -203,13 +203,26 @@ function apply_answer_overlay(question, answer_status, total_respostas_pergunta)
     for (let i = 0; i < total_respostas_pergunta; i++) {
         let element = document.querySelector(`.question${question} .answer_img${i}`);
         
-        if (gabarito_quizz[question] == i){
-            element.classList.add("correto");
+        if (user_options[question] == i){
+            element.classList.add("selecionado");
             console.log("Entrou no if");
         }
-        else {
-            element.classList.add("incorreto");
+        else if (user_options[question] != i) {
+            element.classList.add("nao_selecionado");
             console.log("Não entrou no if");
+        }
+    }
+
+    for (let i = 0; i < total_respostas_pergunta; i++) {
+        let element2 = document.querySelector(`.question${question} .answer_answer${i}`);
+        
+        if (gabarito_quizz[question] == i){
+            element2.classList.add("correto");
+            console.log("Entrou no if span");
+        }
+        else if (gabarito_quizz[question] != i) {
+            element2.classList.add("incorreto");
+            console.log("Não entrou no if span");
         }
     }
 

@@ -119,7 +119,7 @@ function comeca_quizz(quizz) {
                 </div>
             `;
             console.log(respostas[j].isCorrectAnswer);
-            if (respostas.isCorrectAnswer[j] == true){
+            if (respostas.isCorrectAnswer == true){
                 gabarito_quizz.push(j);
             }
 

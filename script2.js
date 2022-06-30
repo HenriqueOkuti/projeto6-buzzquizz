@@ -8,7 +8,7 @@ let qtdNiveis;
 let qtdNiveisOk;
 
 function prosseguirParaCriarPerguntas() {
-    titulo = document.querySelector(".titulo-quizz").value;
+    titulo = document.querySelector(".titulo-quizz").value; 
     tituloOk = (titulo.length >= 20  && titulo.length <= 65);
 
     imagem = document.querySelector(".imagem-quizz").value;
@@ -24,7 +24,7 @@ function prosseguirParaCriarPerguntas() {
         document.querySelector(".informacoes-basicas").classList.add("escondido");
         document.querySelector(".criar-perguntas").classList.remove("escondido");
     } else {
-        alert ("Insira os dados corretamente!")
+        alert ("Insira os dados corretamente!");
     }
 }
 
@@ -35,6 +35,22 @@ function conferirUrl(img){
     } catch(err) {
         return false;
     }
+}
+
+function quantidadePerguntas(){
+    
+    for (let i = 0; i < qtdPerguntas; i++){
+
+    }
+}
+
+function prosseguirParaCriarNiveis(){
+    // texto da pergunta deve ter no mínimo 20 caracteres
+    // cor de fundo hexadecimal
+    // texto das respostas não pode estar vazio
+    // url das imagens de resposta: formato de url
+    // obrigatória inserção de resposta correta e pelo menos 1 resposta errada
+    // caso alguma validação falhar exibir um alerta pedindo para o usuário preencher os dados corretamente
 }
 
 

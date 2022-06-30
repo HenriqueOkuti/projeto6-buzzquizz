@@ -10,6 +10,7 @@
     <!-- Styles bellow -->
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="main.css" />
+    
 
 
 </head>
@@ -21,7 +22,7 @@
         <div class="header_titulo">BuzzQuizz</div>
     </div>
 
-    <div class="conteudo">
+    <div class="conteudo escondido">
         <div class="caixa_usuario">
             Quizzes do usuario
         </div>
@@ -36,12 +37,12 @@
         </div>
     </div>
 
-    <div class="informacoes-basicas escondido">
+    <div class="informacoes-basicas">
         <h2>Comece pelo começo</h2>
         <div class="caracteristicas">
-            <input class="titulo-quizz"type="text" placeholder="Título do seu quizz">
+            <input class="titulo-quizz" type="text" placeholder="Título do seu quizz">
             <input class="imagem-quizz" type="text" placeholder="URL da imagem do seu quizz">
-            <input class="qtd-perguntas"type="text" placeholder="Quantidade de perguntas do quizz">
+            <input class="qtd-perguntas" type="text" placeholder="Quantidade de perguntas do quizz">
             <input class="qtd-niveis" type="text" placeholder="Quantidade de níveis do quizz">
         </div>
         <button class="botao-continuar" onclick="prosseguirParaCriarPerguntas()">Prosseguir para criar perguntas</button>
@@ -49,13 +50,43 @@
 
     <div class="criar-perguntas escondido">
         <h2>Crie suas perguntas</h2>
+        <div class="perguntas">
+            <h3>Pergunta 1</h3>
+            <input class="texto-pergunta" type="text" placeholder="Texto da pergunta">
+            <input class="cor-pergunta" type="text" placeholder="Cor de fundo da pergunta">
+            <h3>Resposta correta</h3>
+            <input class="resposta-correta" type="text" placeholder="Resposta correta">
+            <input class="imagem-correta" type="text" placeholder="URL da imagem">
+            <h3>Respostas incorretas</h3>
+            <input class="resposta-incorreta" type="text" placeholder="Resposta incorreta 1">
+            <input class="imagem-incorreta" type="text" placeholder="URL da imagem 1">
+
+            <input class="titulo-quizz" type="text" placeholder="Resposta incorreta 2">
+            <input class="imagem-quizz" type="text" placeholder="URL da imagem 2"> 
+
+            <input class="titulo-quizz" type="text" placeholder="Resposta incorreta 3">
+            <input class="imagem-quizz" type="text" placeholder="URL da imagem 3">     
+        </div>
+
+        <div class="adicionar-perguntas">
+            <h3>Pergunta 2</h3>
+            <ion-icon name="create-outline"></ion-icon>
+        </div>
+
+        <div class="adicionar-perguntas">
+            <h3>Pergunta 3</h3>
+            <ion-icon name="create-outline"></ion-icon>
+        </div>
+       
+        <button class="botao-continuar" onclick="prosseguirParaCriarNiveis()">Prosseguir para criar níveis</button>
         
     </div>
 
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
     <script src="script2.js"></script>
 
-    </body>
+</body>
 
 </html>

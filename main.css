@@ -38,7 +38,7 @@ html {
 
     color: #FFF;
 
-} 
+}
 
 .conteudo {
 
@@ -65,7 +65,7 @@ html {
 
     margin: 80px 0 0 0;
     width: 75%;
-    height: auto; 
+    height: auto;
 
     /*background-color: lightblue;*/
 
@@ -100,7 +100,7 @@ html {
     position: relative;
 
     margin: 2% 0 0 0;
-    
+
 }
 
 .caixa_geral_quizz img {
@@ -131,7 +131,7 @@ html {
     padding: 0 5% 5% 5%;
 
 
-    
+
     font-size: 19px;
 
     word-break: break-word;
@@ -139,27 +139,31 @@ html {
     color: #FFF;
 
     background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%)
-
 }
 
-.quizz_titulo span{}
+.quizz_titulo span {}
+
 /*Criação quizz:*/
 
-.informacoes-basicas, .caracteristicas {
+.informacoes-basicas,
+.caracteristicas,
+.criar-perguntas {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.informacoes-basicas>h2{
+.informacoes-basicas>h2,
+.criar-perguntas>h2 {
     font-size: 23px;
     margin-top: 70px;
     margin-bottom: 27px;
     font-weight: 700;
 }
 
-.caracteristicas>input {
+.caracteristicas>input,
+.perguntas>input {
     width: 564px;
     height: 46px;
     text-align: left;
@@ -172,26 +176,58 @@ html {
     padding-left: 20px;
 }
 
-.caracteristicas>input::placeholder{
+.caracteristicas>input::placeholder 
+.perguntas>input::placeholder{
     color: #D1D1D1;
 }
 
-.caracteristicas {
+.caracteristicas,
+.perguntas, .adicionar-perguntas {
     width: 600px;
-    height: 256px;
     background-color: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
+.caracteristicas {
+    height: 256px;
+}
+
+.perguntas {
+    height: fit-content;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.adicionar-perguntas {
+    height: 74px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+}
+
+.adicionar-perguntas>ion-icon{
+    font-size: 26px;
 }
 
 .botao-continuar {
     width: 370px;
     height: 54px;
     margin-top: 85px;
-    background-color:#EC362D;
+    background-color: #EC362D;
     color: #FFF5F4;
     border-radius: 15px;
     text-align: center;
     font-size: 21px;
+}
+
+.perguntas>h3, .adicionar-perguntas{
+    font-size: 20px;
+    font-weight: 700;
+    margin: 15px 0px;
 }
 
 .escondido {

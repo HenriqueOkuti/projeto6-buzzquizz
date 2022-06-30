@@ -3,6 +3,11 @@
 ========================*/
 
 let gabarito_quizz = [];
+let scores = [];
+let user_score = [];
+let questions_answered = 0;
+let total_answers = -50;
+let user_options = [];
 
 /*========================
     AUXILIAR FUNCTIONS
@@ -34,10 +39,13 @@ function quizzes_erro(erro) {
     console.log(erro);
 }
 
-function comparador(){
+function comparador() {
     return Math.random() - 0.5;
 }
 
+function pagina_reset() {
+    window.location.reload();
+}
 
 /*========================
     MAIN FUNCTIONS
@@ -76,8 +84,6 @@ function comeca_quizz(quizz) {
 
     const page = document.querySelector(".conteudo");
 
-
-
     page.innerHTML += `
     <div class=quizz_header>
     <img class="quizz_header_img" src="${quizz.data.image}" />
@@ -88,6 +94,8 @@ function comeca_quizz(quizz) {
     `;
 
     const quizz_questions = document.querySelector(".quizz_questions");
+
+    total_answers = quizz.data.questions.length;
 
     for (let i = 0; i < quizz.data.questions.length; i++) {
         quizz_questions.innerHTML += `
@@ -111,15 +119,15 @@ function comeca_quizz(quizz) {
 
         for (let j = 0; j < respostas.length; j++) {
             question_insert.innerHTML += `
-                <div class="answer_option">
-                    <img class="answer_image" src="${respostas[j].image}" onclick="quizz_option_select(this, ${j})"/>
-                    <div class="answer_text">
+                <div class="answer_option question${i} answer${j}">
+                    <img class="answer_image question_img${i} answer_img${j}" src="${respostas[j].image}" onclick="quizz_option_select(this, ${i}, ${j}, ${respostas.length})"/>
+                    <div class="answer_text question_answer${i} answer_answer${j}">
                         <span>${respostas[j].text}</span>
                     </div>
                 </div>
             `;
-            console.log(respostas[j].isCorrectAnswer);
-            if (respostas.isCorrectAnswer == true){
+            //console.log(respostas[j].isCorrectAnswer);
+            if (respostas[j].isCorrectAnswer == true) {
                 gabarito_quizz.push(j);
             }
 
@@ -127,15 +135,85 @@ function comeca_quizz(quizz) {
 
     }
 
+    for (let i = 0; i < quizz.data.levels.length; i++) {
+        scores.push(quizz.data.levels[i]);
+    }
 
+    // Calculo de questões respondidas é global
+
+    if (questions_answered == total_answers) {
+        calculate_score();
+    }
+
+    // Função que calcula o score
+
+    calculate_score();
+
+    // Função que finaliza o questionario (quizz_terminou = true)
+
+
+    // Finaliza questionário
     if (quizz_terminou === true) {
         gabarito_quizz = [];
-        pagina_inicio();
+        scores = [];
+        questions_answered = 0;
+        total_answers = -50;
+        pagina_reset();
     }
 
 }
 
-function quizz_option_select(element, option){
-    console.log("Clicou");
-    console.log(gabarito_quizz);
+function quizz_option_select(element, question, option, total_respostas_pergunta) {
+    //console.log(scores)
+    //console.log(gabarito_quizz);
+
+    let answer_status = false;
+    user_options.push(option);
+    if (gabarito_quizz[question] == option) {
+        console.log(`Acertou ${question} ${option}`);
+        answer_status = true;
+    }
+    else {
+        console.log(`Errou ${question} ${option}`);
+    }
+    remove_click(question, answer_status, total_respostas_pergunta);
+    return;
 }
+
+function calculate_score() {
+    return null;
+}
+
+
+function remove_click(question, answer_status, total_respostas_pergunta) {
+    for (let i = 0; i < total_respostas_pergunta; i++) {
+        let element = document.querySelectorAll(`.question${question} > .answer_img${i}`);
+        element[0].removeAttribute("onclick");
+    }
+    apply_answer_overlay(question, answer_status, total_respostas_pergunta);
+    questions_answered++;
+    console.log(questions_answered);
+    return;
+}
+
+function apply_answer_overlay(question, answer_status, total_respostas_pergunta) {
+    
+    console.log(`Question ${question} is right? ${answer_status}`);
+
+    for (let i = 0; i < total_respostas_pergunta; i++) {
+        let element = document.querySelector(`.question${question} .answer_img${i}`);
+        
+        if (gabarito_quizz[question] == i){
+            element.classList.add("correto");
+            console.log("Entrou no if");
+        }
+        else {
+            element.classList.add("incorreto");
+            console.log("Não entrou no if");
+        }
+    }
+
+};
+
+function calculate_score() { };
+

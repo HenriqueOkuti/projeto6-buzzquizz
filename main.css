@@ -235,6 +235,7 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
 
 .question_title_text {
   width: 80vw;
+  word-break: break-all;
 }
 
 .question_box_content {

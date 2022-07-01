@@ -14,17 +14,16 @@ html {
 }
 
 .header {
-  position: sticky;
-
+  position: fixed;
+  top: 0;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 100%;
   height: 69px;
-
   background-color: #ec362d;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
 }
 
 .redirect_home {
@@ -446,34 +445,34 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
 .caracteristicas,
 .criar-perguntas,
 .criar-niveis {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.informacoes-basicas>h2,
-.criar-perguntas>h2,
-.criar-niveis>h2 {
-    font-size: 23px;
-    margin-top: 70px;
-    margin-bottom: 27px;
-    font-weight: 700;
+.informacoes-basicas > h2,
+.criar-perguntas > h2,
+.criar-niveis > h2 {
+  font-size: 23px;
+  margin-top: 70px;
+  margin-bottom: 27px;
+  font-weight: 700;
 }
 
-.caracteristicas>input,
-.perguntas>input,
-.outrasperguntas>input {
-    width: 564px;
-    height: 46px;
-    text-align: left;
-    font-size: 18px;
-    font-style: italic;
-    font-weight: 400;
-    margin-bottom: 10px;
-    border: solid 1px #D1D1D1;
-    border-radius: 5px;
-    padding-left: 20px;
+.caracteristicas > input,
+.perguntas > input,
+.outrasperguntas > input {
+  width: 564px;
+  height: 46px;
+  text-align: left;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 10px;
+  border: solid 1px #d1d1d1;
+  border-radius: 5px;
+  padding-left: 20px;
 }
 
 .caracteristicas > input::placeholder .perguntas > input::placeholder {
@@ -493,21 +492,21 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
 }
 
 .perguntas {
-    height: fit-content;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 15px;
+  height: fit-content;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 15px;
 }
 
 .adicionar-perguntas {
-    height: 74px;
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 20px;
-    margin-bottom: 10px;
+  height: 74px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+  margin-bottom: 10px;
 }
 
 .adicionar-perguntas > ion-icon {
@@ -515,28 +514,30 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
 }
 
 .botao-continuar {
-    width: 370px;
-    height: 54px;
-    margin-top: 85px;
-    background-color: #EC362D;
-    color: #FFF5F4;
-    border-radius: 15px;
-    text-align: center;
-    font-size: 21px;
-    margin-bottom: 400px;
+  width: 370px;
+  height: 54px;
+  margin-top: 85px;
+  background-color: #ec362d;
+  color: #fff5f4;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 21px;
+  margin-bottom: 400px;
 }
 
-.perguntas>h3, .adicionar-perguntas{
-    font-size: 20px;
-    font-weight: 700;
+.perguntas > h3,
+.adicionar-perguntas {
+  font-size: 20px;
+  font-weight: 700;
 }
 
-.perguntas>h3{
-    margin: 15px 0px;
+.perguntas > h3 {
+  margin: 15px 0px;
 }
 
-input.url1, input.url2 {
-    margin-bottom: 30px;
+input.url1,
+input.url2 {
+  margin-bottom: 30px;
 }
 .escondido {
   display: none;

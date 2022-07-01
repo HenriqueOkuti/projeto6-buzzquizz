@@ -5,9 +5,12 @@
 let gabarito_quizz = [];
 let scores = [];
 let user_score = [];
+let user_score_value = 0;
 let questions_answered = 0;
 let total_answers = -50;
 let user_options = [];
+let user_score_percentage = 0;
+let quizz_id = 0;
 
 /*========================
     AUXILIAR FUNCTIONS
@@ -15,7 +18,7 @@ let user_options = [];
 
 function quizzes_carrega() {
 
-    const promise = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
+    const promise = axios.get("https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes");
     promise.then(quizzes_renderiza);
     promise.catch(quizzes_erro);
 
@@ -23,9 +26,12 @@ function quizzes_carrega() {
 
 function abrir_quizz(elemento, id) {
 
-    const quizz_carregado = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`);
+    quizz_id = id;
+    const quizz_carregado = axios.get(`https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes/${id}`);
     quizz_carregado.then(comeca_quizz);
     quizz_carregado.catch(quizzes_erro);
+
+
 
 }
 
@@ -45,6 +51,28 @@ function comparador() {
 
 function pagina_reset() {
     window.location.reload();
+}
+
+function reset_quizz() {
+    reset_variables();
+    window.scrollTo(0, 0);
+    abrir_quizz(0, quizz_id);
+};
+
+function quit_quizz() {
+    reset_variables();
+    window.scrollTo(0, 0);
+    pagina_reset()
+};
+
+function reset_variables() {
+    gabarito_quizz = [];
+    user_selected = [];
+    scores = [];
+    questions_answered = 0;
+    user_score_value = 0;
+    total_answers = -50;
+    return;
 }
 
 /*========================
@@ -109,6 +137,7 @@ function comeca_quizz(quizz) {
             </div>
         </div>
         `;
+
         const question = document.querySelectorAll(".answer_box");
 
         let respostas = quizz.data.questions[i].answers;
@@ -139,49 +168,22 @@ function comeca_quizz(quizz) {
         scores.push(quizz.data.levels[i]);
     }
 
-    // Calculo de questões respondidas é global
+}
+
+function quizz_option_select(element, question, option, total_respostas_pergunta) {
+
+    let answer_status = false;
+    user_options.push(option);
+    if (gabarito_quizz[question] == option) {
+        answer_status = true;
+    }
+    remove_click(question, answer_status, total_respostas_pergunta);
 
     if (questions_answered == total_answers) {
         calculate_score();
     }
 
-    // Função que calcula o score
-
-    calculate_score();
-
-    // Função que finaliza o questionario (quizz_terminou = true)
-
-
-    // Finaliza questionário
-    if (quizz_terminou === true) {
-        gabarito_quizz = [];
-        scores = [];
-        questions_answered = 0;
-        total_answers = -50;
-        pagina_reset();
-    }
-
-}
-
-function quizz_option_select(element, question, option, total_respostas_pergunta) {
-    //console.log(scores)
-    console.log(gabarito_quizz);
-
-    let answer_status = false;
-    user_options.push(option);
-    if (gabarito_quizz[question] == option) {
-        console.log(`Acertou ${question} ${option}`);
-        answer_status = true;
-    }
-    else {
-        console.log(`Errou ${question} ${option}`);
-    }
-    remove_click(question, answer_status, total_respostas_pergunta);
     return;
-}
-
-function calculate_score() {
-    return null;
 }
 
 
@@ -191,42 +193,97 @@ function remove_click(question, answer_status, total_respostas_pergunta) {
         element[0].removeAttribute("onclick");
     }
     apply_answer_overlay(question, answer_status, total_respostas_pergunta);
-    questions_answered++;
-    console.log(questions_answered);
+    questions_answered = questions_answered + 1;
+
     return;
 }
 
 function apply_answer_overlay(question, answer_status, total_respostas_pergunta) {
-    
-    console.log(`Question ${question} is right? ${answer_status}`);
 
     for (let i = 0; i < total_respostas_pergunta; i++) {
         let element = document.querySelector(`.question${question} .answer_img${i}`);
-        
-        if (user_options[question] == i){
+
+        if (user_options[question] == i) {
             element.classList.add("selecionado");
-            console.log("Entrou no if");
         }
         else if (user_options[question] != i) {
             element.classList.add("nao_selecionado");
-            console.log("Não entrou no if");
         }
     }
 
     for (let i = 0; i < total_respostas_pergunta; i++) {
         let element2 = document.querySelector(`.question${question} .answer_answer${i}`);
-        
-        if (gabarito_quizz[question] == i){
+
+        if (gabarito_quizz[question] == i) {
             element2.classList.add("correto");
-            console.log("Entrou no if span");
         }
         else if (gabarito_quizz[question] != i) {
             element2.classList.add("incorreto");
-            console.log("Não entrou no if span");
         }
     }
 
+    return;
+
 };
 
-function calculate_score() { };
+function calculate_score() {
 
+    for (let i = 0; i < gabarito_quizz.length; i++) {
+        if (user_options[i] == gabarito_quizz[i]) {
+            user_score_value++;
+        }
+    }
+
+    user_score_percentage = Math.round(100 * Number(user_score_value) / Number(gabarito_quizz.length));
+
+    let arr = [];
+    for (let i = 0; i < scores.length; i++) {
+        arr.push(scores[i].minValue);
+    }
+
+    let number = arr.sort().reverse().find(e => e <= user_score_percentage);
+    for (let i = 0; i < scores.length; i++) {
+        if (scores[i].minValue == number) {
+            add_result_screen(scores[i]);
+        }
+    }
+
+    return;
+};
+
+function add_result_screen(object) {
+
+    const page = document.querySelector(".conteudo");
+
+    page.innerHTML += `
+    <div class="question_box">
+        <div class="results">
+            <div class="results_title_box" style="#EC362D;">
+                <div class="results_title_box_text">
+                    <span>${user_score_percentage}% de acerto: ${object.title}</span>
+                </div>
+            </div>
+            <div class="results_content">
+                <div class="results_img_div"><img class="results_img" src="${object.image}" /></div>
+                <div class="results_text">
+                    <span>${object.text}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+
+    page.innerHTML += `
+        <div class="quizz_reset" onclick="reset_quizz()">
+            <span class="reset_text">Reiniciar Quizz</span>
+        </div>
+        <div class="quizz_quit" onclick="quit_quizz()">
+            <span class="quit_text">Voltar para home</span>
+        </div>
+    `;
+
+    return;
+}
+
+
+//document.getElementById('scroll-here-plz').scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});

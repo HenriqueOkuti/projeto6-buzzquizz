@@ -223,7 +223,7 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
   align-items: center;
   justify-content: center;
 
-  width: 60vw;
+  width: 60.2vw;
   height: 140px;
 
   margin-top: 30px;
@@ -252,11 +252,17 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
 }
 
 .answer_box {
-  display: grid;
+  /*display: grid;
   grid-template-columns: 1fr 1fr;
   word-break: break-word;
   width: 100%;
   margin: 2vh 0 2vh 0;
+  */
+  word-break: break-word;
+  width: 69vw;
+  margin: 2vh 0 2vh 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .answer_option {
@@ -399,6 +405,39 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
 .quizz_quit * {
   font-size: 21px;
   color: #818181;
+}
+
+@media (max-width: 475px) {
+  .question_box {
+    width: 100vw;
+  }
+
+  .question_title {
+    width: 84vw;
+  }
+
+  .answer_box {
+    word-break: break-word;
+    width: 100vw;
+    margin: 2vh 0 2vh 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .answer_image {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .answer_text {
+    font-size: calc(0.8vw + 13px);
+    line-height: min(20px);
+    width: 100vw;
+    padding: 0 0 2vh 0;
+  }
 }
 
 /*Criação quizz:*/

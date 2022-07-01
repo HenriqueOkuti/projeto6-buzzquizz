@@ -407,7 +407,7 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
   color: #818181;
 }
 
-@media (max-width: 475px) {
+@media (max-width: 476px) {
   .question_box {
     width: 100vw;
   }

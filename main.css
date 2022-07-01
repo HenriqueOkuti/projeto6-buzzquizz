@@ -318,7 +318,8 @@ html {
 
 .informacoes-basicas,
 .caracteristicas,
-.criar-perguntas {
+.criar-perguntas,
+.criar-niveis {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -326,7 +327,8 @@ html {
 }
 
 .informacoes-basicas>h2,
-.criar-perguntas>h2 {
+.criar-perguntas>h2,
+.criar-niveis>h2 {
     font-size: 23px;
     margin-top: 70px;
     margin-bottom: 27px;
@@ -334,7 +336,8 @@ html {
 }
 
 .caracteristicas>input,
-.perguntas>input {
+.perguntas>input,
+.outrasperguntas>input {
     width: 564px;
     height: 46px;
     text-align: left;
@@ -369,7 +372,7 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 }
 
 .adicionar-perguntas {
@@ -378,7 +381,7 @@ html {
     justify-content: space-between;
     align-items: center;
     padding: 0px 20px;
-
+    margin-bottom: 10px;
 }
 
 .adicionar-perguntas>ion-icon{
@@ -394,14 +397,21 @@ html {
     border-radius: 15px;
     text-align: center;
     font-size: 21px;
+    margin-bottom: 400px;
 }
 
 .perguntas>h3, .adicionar-perguntas{
     font-size: 20px;
     font-weight: 700;
+}
+
+.perguntas>h3{
     margin: 15px 0px;
 }
 
+input.url1, input.url2 {
+    margin-bottom: 30px;
+}
 .escondido {
     display: none;
 }

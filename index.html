@@ -10,7 +10,7 @@
     <!-- Styles bellow -->
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="main.css" />
-    
+
 
 
 </head>
@@ -56,30 +56,43 @@
             <input class="cor-pergunta" type="text" placeholder="Cor de fundo da pergunta">
             <h3>Resposta correta</h3>
             <input class="resposta-correta" type="text" placeholder="Resposta correta">
-            <input class="imagem-correta" type="text" placeholder="URL da imagem">
+            <input class="url-correta" type="text" placeholder="URL da imagem">
             <h3>Respostas incorretas</h3>
-            <input class="resposta-incorreta" type="text" placeholder="Resposta incorreta 1">
-            <input class="imagem-incorreta" type="text" placeholder="URL da imagem 1">
+            <div class="outrasperguntas">
+                <input class="resposta-incorreta1" type="text" placeholder="Resposta incorreta 1">
+                <input class="url-incorreta1" type="text" placeholder="URL da imagem 1">
 
-            <input class="titulo-quizz" type="text" placeholder="Resposta incorreta 2">
-            <input class="imagem-quizz" type="text" placeholder="URL da imagem 2"> 
+                <input class="resposta-incorreta2 escondido" type="text" placeholder="Resposta incorreta 2">
+                <input class="url-incorreta2 escondido" type="text" placeholder="URL da imagem 2">
 
-            <input class="titulo-quizz" type="text" placeholder="Resposta incorreta 3">
-            <input class="imagem-quizz" type="text" placeholder="URL da imagem 3">     
+                <input class="resposta-incorreta3 escondido" type="text" placeholder="Resposta incorreta 3">
+                <input class="url-incorreta3 escondido" type="text" placeholder="URL da imagem 3">
+            </div>
         </div>
+        <div class="perguntas2">
 
-        <div class="adicionar-perguntas">
-            <h3>Pergunta 2</h3>
-            <ion-icon name="create-outline"></ion-icon>
         </div>
+        <ul class="perguntas-fechadas">
+        </ul>
 
-        <div class="adicionar-perguntas">
-            <h3>Pergunta 3</h3>
-            <ion-icon name="create-outline"></ion-icon>
-        </div>
-       
         <button class="botao-continuar" onclick="prosseguirParaCriarNiveis()">Prosseguir para criar níveis</button>
+
+    </div>
+
+    <div class="criar-niveis escondido">
+        <h2>Agora, decida os níveis</h2>
+        <div class="perguntas">
+            <h3>Nível 1</h3>
+            <input class="titulo-nivel" type="text" placeholder="Título do nível">
+            <input class="acerto-nivel" type="text" placeholder="% de acerto mínima">
+            <input class="imagem-nivel" type="text" placeholder="URL da imagem do nível">
+            <input class="descricao-nivel" type="text" placeholder="Descrição do nível">
+        </div>
+        <ul class="niveis-fechados">
         
+        </ul>
+
+        <button class="botao-continuar" onclick="finalizarQuizz()">Finalizar Quizz</button>
     </div>
 
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>

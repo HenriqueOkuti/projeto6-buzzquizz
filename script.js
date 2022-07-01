@@ -68,10 +68,14 @@ function quit_quizz() {
 function reset_variables() {
     gabarito_quizz = [];
     user_selected = [];
+    user_options = [];
     scores = [];
     questions_answered = 0;
     user_score_value = 0;
     total_answers = -50;
+    user_score = [];
+    user_score_percentage = 0;
+
     return;
 }
 
@@ -126,8 +130,12 @@ function comeca_quizz(quizz) {
     total_answers = quizz.data.questions.length;
 
     for (let i = 0; i < quizz.data.questions.length; i++) {
+
+        user_options.push([]);
+
+
         quizz_questions.innerHTML += `
-        <div class="question_box">
+        <div class="question_box question_box_${i}">
             <div class="question_title" style="background-color: ${quizz.data.questions[i].color};">
                 <div class="question_title_text">${quizz.data.questions[i].title}</div>
             </div>
@@ -149,7 +157,7 @@ function comeca_quizz(quizz) {
         for (let j = 0; j < respostas.length; j++) {
             question_insert.innerHTML += `
                 <div class="answer_option question${i} answer${j}">
-                    <img class="answer_image question_img${i} answer_img${j}" src="${respostas[j].image}" onclick="quizz_option_select(this, ${i}, ${j}, ${respostas.length})"/>
+                    <img class="answer_image question_img${i} answer_img${j}" src="${respostas[j].image}" onclick="quizz_option_select(this, ${i}, ${j}, ${respostas.length}); scroll_to_next(${i})"/>
                     <div class="answer_text question_answer${i} answer_answer${j}">
                         <span>${respostas[j].text}</span>
                     </div>
@@ -173,7 +181,8 @@ function comeca_quizz(quizz) {
 function quizz_option_select(element, question, option, total_respostas_pergunta) {
 
     let answer_status = false;
-    user_options.push(option);
+    user_options[question] = [question, option];
+    //console.log(user_options);
     if (gabarito_quizz[question] == option) {
         answer_status = true;
     }
@@ -203,10 +212,10 @@ function apply_answer_overlay(question, answer_status, total_respostas_pergunta)
     for (let i = 0; i < total_respostas_pergunta; i++) {
         let element = document.querySelector(`.question${question} .answer_img${i}`);
 
-        if (user_options[question] == i) {
+        if (user_options[question][1] == i) {
             element.classList.add("selecionado");
         }
-        else if (user_options[question] != i) {
+        else if (user_options[question][1] != i) {
             element.classList.add("nao_selecionado");
         }
     }
@@ -229,7 +238,8 @@ function apply_answer_overlay(question, answer_status, total_respostas_pergunta)
 function calculate_score() {
 
     for (let i = 0; i < gabarito_quizz.length; i++) {
-        if (user_options[i] == gabarito_quizz[i]) {
+        console.log("user answered: " + user_options[i][1]);
+        if (user_options[i][1] == gabarito_quizz[i]) {
             user_score_value++;
         }
     }
@@ -285,5 +295,45 @@ function add_result_screen(object) {
     return;
 }
 
+function scroll_to_next(answered_question) {
+    const array_perguntas = [];
+    for (let i = 0; i < gabarito_quizz.length; i++) {
+        array_perguntas.push(i);
+    }
+
+    //Searches for first unanswered question:
+    let first_unanswered = 0;
+    for (let i = 0; i<user_options.length; i++){
+        if (user_options[i][0] == undefined){
+            first_unanswered = i;
+            break;
+        }
+    }
+
+    //Verifies if all questions have been answered:
+    let skipped_questions = false;
+    for (let i = 0; i<user_options.length; i++){
+        if (user_options[i][0] == undefined){
+            skipped_questions = false;
+            break;
+        }
+        else if (user_options[i][0] != undefined){
+            skipped_questions = true;
+        }
+    }
+
+    if (!skipped_questions) {
+        console.log("Entrou no scroll para proxima questao");
+        const question_to_scroll = document.querySelector(`.question_box_${first_unanswered}`);
+        const scroll_question = setTimeout(function () { question_to_scroll.scrollIntoView({ behavior: "smooth" }) }, 2000);
+    };
+
+    if (skipped_questions) {
+        const result_to_scroll = document.querySelector(`.results`);
+        const scroll_result = setTimeout(function () { result_to_scroll.scrollIntoView({ behavior: "smooth" }) }, 2000);
+    }
+
+    return;
+}
 
 //document.getElementById('scroll-here-plz').scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});

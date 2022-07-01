@@ -49,8 +49,8 @@ html {
 
 .caixa_usuario {
   height: 180px;
-  width: 75%;
-
+  min-width: 340px;
+  width: 74.5vw;
   border: 2px dashed #d4d4d4;
   border-radius: 5px;
 }
@@ -58,13 +58,9 @@ html {
 .caixa_geral {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
-
   margin: 80px 0 0 0;
-  width: 75%;
+  width: calc(18px + 74vw);
   height: auto;
-
-  /*background-color: lightblue;*/
 }
 
 .caixa_geral_titulo {
@@ -76,15 +72,15 @@ html {
 
 .caixa_geral_lista {
   width: 100vw;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
+  display: grid;
+  /*grid-template-columns: repeat(auto-fill, minmax(calc(5.5vw + 270px), 270px));*/
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1vw;
 }
 
 .caixa_geral_quizz {
-  width: calc(3vw + 270px);
-  height: calc(1vw + 180px);
+  width: 100%;
+  height: calc(3vw + 180px);
   position: relative;
   margin: 0.5vh 1vw 0.5vh 0;
   border-radius: 5px;
@@ -195,7 +191,7 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
   justify-content: space-between;
   flex-direction: column;
 
-  width: 80vw;
+  width: 70vw;
   height: auto;
 
   border-radius: 5px;
@@ -407,6 +403,20 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
 }
 
 @media (max-width: 476px) {
+
+  .caixa_geral {
+    margin: 30px 0 0 0;
+  }
+
+  .caixa_geral_lista {
+    grid-template-columns: 1fr;
+  }
+
+  .caixa_geral_quizz {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   .question_box {
     width: 100vw;
   }
@@ -415,13 +425,18 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
     width: 84vw;
   }
 
+  .question_box_content {
+    margin-bottom: 20px;
+    height: auto;
+    width: 100%;
+    /*margin-left: 25%;*/
+  }
+
   .answer_box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5vw;
     word-break: break-word;
-    width: 100vw;
-    margin: 2vh 0 2vh 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
   }
 
   .answer_image {

@@ -113,8 +113,11 @@ function comeca_quizz(quizz) {
     let quizz_terminou = false;
 
     limpar_pagina();
-
+    
     const page = document.querySelector(".conteudo");
+
+    //scroll to top of page after loading a quizz:
+    page.scrollIntoView();
 
     page.innerHTML += `
     <div class=quizz_header>
@@ -163,7 +166,6 @@ function comeca_quizz(quizz) {
                     </div>
                 </div>
             `;
-            //console.log(respostas[j].isCorrectAnswer);
             if (respostas[j].isCorrectAnswer == true) {
                 gabarito_quizz.push(j);
             }
@@ -182,7 +184,6 @@ function quizz_option_select(element, question, option, total_respostas_pergunta
 
     let answer_status = false;
     user_options[question] = [question, option];
-    //console.log(user_options);
     if (gabarito_quizz[question] == option) {
         answer_status = true;
     }
@@ -238,7 +239,6 @@ function apply_answer_overlay(question, answer_status, total_respostas_pergunta)
 function calculate_score() {
 
     for (let i = 0; i < gabarito_quizz.length; i++) {
-        console.log("user answered: " + user_options[i][1]);
         if (user_options[i][1] == gabarito_quizz[i]) {
             user_score_value++;
         }
@@ -323,7 +323,6 @@ function scroll_to_next(answered_question) {
     }
 
     if (!skipped_questions) {
-        console.log("Entrou no scroll para proxima questao");
         const question_to_scroll = document.querySelector(`.question_box_${first_unanswered}`);
         const scroll_question = setTimeout(function () { question_to_scroll.scrollIntoView({ behavior: "smooth" }) }, 2000);
     };

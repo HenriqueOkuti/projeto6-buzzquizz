@@ -39,7 +39,7 @@ html {
 }
 
 .conteudo {
-  margin: 80px 0 0 0;
+  margin: 140px 0 0 0;
 
   display: flex;
   align-items: center;
@@ -58,7 +58,7 @@ html {
 .caixa_geral {
   display: flex;
   flex-wrap: wrap;
-  margin: 80px 0 0 0;
+  margin: 40px 0 0 0;
   width: calc(18px + 74vw);
   height: auto;
 }
@@ -348,8 +348,10 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
 }
 
 .results_img {
+  min-width: 340px;
   width: 30vw;
-  height: 25vh;
+  min-height: 260px;
+  height: auto;
   object-fit: cover;
   border-radius: 4px;
 }
@@ -404,6 +406,10 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
 }
 
 @media (max-width: 476px) {
+
+  .conteudo {
+    margin: 100px 0 0 0;
+  }
 
   .caixa_geral {
     margin: 30px 0 0 0;

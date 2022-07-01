@@ -37,7 +37,7 @@ function abrir_quizz(elemento, id) {
 
 function limpar_pagina() {
     document.querySelector(".conteudo").innerHTML = "";
-
+    return;
 }
 
 
@@ -51,18 +51,26 @@ function comparador() {
 
 function pagina_reset() {
     window.location.reload();
+    return;
 }
 
 function reset_quizz() {
+    console.log("Resetou o quizz");
     reset_variables();
-    window.scrollTo(0, 0);
-    abrir_quizz(0, quizz_id);
+    //scroll to top of page after loading a quizz:
+    document.querySelector(".conteudo").scrollIntoView({ behavior: "smooth" });
+    setTimeout(function () { abrir_quizz(0, quizz_id) }, 1500);
+    //abrir_quizz(0, quizz_id);
+    return;
 };
 
 function quit_quizz() {
     reset_variables();
-    window.scrollTo(0, 0);
-    pagina_reset()
+    //scroll to top of page after loading a quizz:
+    document.querySelector(".conteudo").scrollIntoView({ behavior: "smooth" });
+    setTimeout(function () { pagina_reset() }, 1500);
+    //pagina_reset()
+    return;
 };
 
 function reset_variables() {
@@ -87,6 +95,7 @@ function reset_variables() {
 function pagina_inicio() {
 
     quizzes_carrega();
+    return;
 
 }
 
@@ -112,12 +121,16 @@ function comeca_quizz(quizz) {
 
     let quizz_terminou = false;
 
-    limpar_pagina();
-    
-    const page = document.querySelector(".conteudo");
+    //Cleans page content:  
+    //limpar_pagina();
 
-    //scroll to top of page after loading a quizz:
-    page.scrollIntoView();
+    //Scroll to top of page after loading a quizz:
+    const page = document.querySelector(".conteudo");
+    setTimeout(function () { page.scrollIntoView({ behavior: "smooth" }) }, 250);
+
+    limpar_pagina();
+    //Cleans page content:
+    //setTimeout(function () { limpar_pagina() }, 1000);
 
     page.innerHTML += `
     <div class=quizz_header>

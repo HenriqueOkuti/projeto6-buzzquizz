@@ -141,7 +141,7 @@ function verificarInputPerguntas(i) {
     let objRespostaCorreta = {
         text: '',
         image: '',
-        isCorrectAnswer: false
+        isCorrectAnswer: true
     }
 
     let objRespostaIncorreta1 = {
@@ -242,9 +242,7 @@ function verificarInputPerguntas(i) {
         objeto.questions.push(objPerguntas);
 
         return true;
-
     } else {
-
         return false;
     }
 
@@ -373,6 +371,7 @@ function verificarSeAlgumNivelehZero() {
         document.querySelector(".criar-niveis").classList.add("escondido");
         document.querySelector(".quizz-pronto").classList.remove("escondido");
         imagemQuizzPronto();
+        enviarQuizzCriado();
     } else {
         alert("Insira os dados corretamente. Verifique se um dos níveis possui o valor 0 (zero).");
         objeto.levels = [];
@@ -393,16 +392,63 @@ function imagemQuizzPronto() {
 }
 
 function acessarQuizz(){
-    //visualizar o quizz criado (Tela 2);
+    //visualizar o quizz criado (Tela 2) ?????????????;
     document.querySelector(".quizz-pronto").classList.add("escondido");
 }
 
 function voltarHome(){
-    window.location.reload();
-    //atualizar com quizzes criados;
+    if (localStorage.length === 0) {
+
+        document.querySelector(".caixa_usuario").classList.add("escondido");
+        document.querySelector(".caixa_usuario2").classList.remove("escondido");
+        window.location.reload();
+
+    } else if (localStorage.length !== 0) {
+        window.location.reload();
+    }
 }
 
 
 // Enviar Quizz criado para API e salvar no Local Storage::::::::: 
 
+function enviarQuizzCriado() {
+    filtrarPerguntasValidas();
 
+    const promise = axios.post("https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes", objeto);
+
+    promise.catch(erroAoEnviar);
+    promise.then(salvarLocalStorage);
+}
+
+function erroAoEnviar(erro) {
+    let status = erro.response.data;
+    alert(status)
+}
+
+function salvarLocalStorage(resposta) {
+    console.log("Deu certo :)");
+
+    let quizzesCriados = JSON.parse(localStorage.getItem("quizzesCriados") || "[]");
+
+    quizzesCriados.push({
+        id: resposta.data.id,
+        title: resposta.data.title,
+        background_image: resposta.data.image
+    });
+
+    localStorage.setItem("quizzesCriados", JSON.stringify(quizzesCriados));
+
+    //renderizarMeusQuizzes();
+}
+
+function filtrarPerguntasValidas(){
+    for (let i = 0; i < qtdPerguntas; i ++) {
+        objeto.questions[i].answers = objeto.questions[i].answers.filter(function(pergunta){
+            return pergunta.title !== "" && pergunta.image !== ""
+        })
+    }
+}
+
+/*function renderizarMeusQuizzes(){
+    //inserir na class="caixa_seusquizzes" o quizz feito 
+}*/

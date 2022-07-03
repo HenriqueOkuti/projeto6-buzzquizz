@@ -514,9 +514,11 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
   padding-left: 20px;
 }
 
+
 .caracteristicas>input::placeholder .pergunta>input::placeholder {
   color: #d1d1d1;
 }
+
 
 .caracteristicas,
 .pergunta,
@@ -637,9 +639,6 @@ li {
   word-break: break-word;
 }
 
-.escondido {
-  display: none;
-}
 
 
 /*Botão criar quizz e listagem*/
@@ -666,4 +665,42 @@ li {
   color: #EC362D;
   border: 1px dashed #EC362D;
   border-radius: 50px;
+}
+
+.seusquizzes_titulo {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seusquizzes_titulo>ion-icon{
+  color: #EC362D;
+  font-size: 30px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.caixa_seusquizzes {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 40px 0 0 0;
+  width: calc(18px + 74vw);
+  height: auto;
+}
+
+.seusquizzes_lista {
+  width: 100vw;
+  display: grid;
+  /*grid-template-columns: repeat(auto-fill, minmax(calc(5.5vw + 270px), 270px));*/
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1vw;
+}
+
+.escondido {
+  display: none;
 }

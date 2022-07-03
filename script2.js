@@ -262,7 +262,7 @@ function prosseguirParaCriarNiveis() {
         document.querySelector(".criar-niveis").classList.remove("escondido");
 
     } else {
-        alert("Insira os dados corretamente!")
+        alert("Insira os dados corretamente! Cada pergunta deve possuir no mínimo uma resposta incorreta, caso opte por mais de uma, estas devem ser preenchidas na ordem.")
         objeto.questions = [];
     }
 
@@ -354,7 +354,7 @@ function finalizarQuizz() {
         }
     }
 
-    verificarSeAlgumNivelehZero();
+    verificarSeAlgumNivelehRepetido();
 
 }
 
@@ -373,8 +373,27 @@ function verificarSeAlgumNivelehZero() {
         imagemQuizzPronto();
         enviarQuizzCriado();
     } else {
-        alert("Insira os dados corretamente. Verifique se um dos níveis possui o valor 0 (zero).");
+        alert("Insira os dados corretamente. Um dos níveis deve possuir o valor 0 (zero).");
         objeto.levels = [];
+    }
+}
+
+function verificarSeAlgumNivelehRepetido(){
+    
+
+    let contadorRepetidos = 0;
+
+    for (let i = 1; i < qtdNiveis; i++) {
+        if (Number(document.querySelector(`..acertonivel-${i}`).value) === Number(document.querySelector(`.acertonivel-${i+1}`).value)) {
+            contadorRepetidos = contadorRepetidos + 1;
+        }
+    }
+
+    if (contadorRepetidos > 0) {
+        alert("Insira os dados corretamente. Verifique se algum nível está repetido.");
+        objeto.levels = [];
+    } else {
+        verificarSeAlgumNivelehZero();
     }
 }
 

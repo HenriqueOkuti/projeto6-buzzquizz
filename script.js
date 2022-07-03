@@ -79,6 +79,13 @@ function reset_variables() {
     return;
 }
 
+function verify_localkeys() {
+    if (localStorage.getItem("quizzesCriados") !== null) {
+        insert_user_questions();
+    };
+    return;
+}
+
 /*========================
     MAIN FUNCTIONS
 ========================*/
@@ -87,6 +94,7 @@ function reset_variables() {
 function pagina_inicio() {
 
     quizzes_carrega();
+    verify_localkeys();
 
 }
 
@@ -303,8 +311,8 @@ function scroll_to_next(answered_question) {
 
     //Searches for first unanswered question:
     let first_unanswered = 0;
-    for (let i = 0; i<user_options.length; i++){
-        if (user_options[i][0] == undefined){
+    for (let i = 0; i < user_options.length; i++) {
+        if (user_options[i][0] == undefined) {
             first_unanswered = i;
             break;
         }
@@ -312,12 +320,12 @@ function scroll_to_next(answered_question) {
 
     //Verifies if all questions have been answered:
     let skipped_questions = false;
-    for (let i = 0; i<user_options.length; i++){
-        if (user_options[i][0] == undefined){
+    for (let i = 0; i < user_options.length; i++) {
+        if (user_options[i][0] == undefined) {
             skipped_questions = false;
             break;
         }
-        else if (user_options[i][0] != undefined){
+        else if (user_options[i][0] != undefined) {
             skipped_questions = true;
         }
     }
@@ -334,6 +342,40 @@ function scroll_to_next(answered_question) {
     }
 
     return;
+}
+
+function insert_user_questions() {
+    let keys_object = JSON.parse(window.localStorage.getItem('quizzesCriados'));
+    console.log(keys_object[0]);
+    //console.log(keys_object.length);
+
+    let num_user_quizzes = keys_object.length;
+
+    document.querySelector(".caixa_usuario").classList.add("escondido");
+    document.querySelector(".caixa_seusquizzes").classList.remove("escondido");
+
+    let user_box = document.querySelector(".caixa_seusquizzes");
+    user_box.innerHTML = `
+    <div class="insert_new_user_quizz">
+    <span>Seus quizzes</span>
+    <button onclick="criarQuizz();">
+    <img src="./files/plus_icon.svg" />
+    </buttom>
+    </div>
+    `;
+
+    for (let i = 0; i < num_user_quizzes; i++) {
+        user_box.innerHTML += `
+        <div class="list_user_quizz">
+            <div class="user_quizz user_quizz2" onclick="abrir_quizz(this, ${keys_object[i].id});">
+                <img class="user_quizz user_quizz_background" src="${keys_object[i].background_image}" />
+                <div class="user_quizz user_quizz_titulo"><span>${keys_object[i].title}</span></div>
+            </div>
+        </div>
+        `;
+
+
+    }
 }
 
 //document.getElementById('scroll-here-plz').scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});

@@ -416,12 +416,12 @@ function acessarQuizz() {
 }
 
 function voltarHome() {
-    if (localStorage.length === 0) {
+    document.querySelector(".conteudo").classList.remove("escondido");
 
+    if (localStorage.length === 0) {
         document.querySelector(".caixa_usuario").classList.add("escondido");
         document.querySelector(".caixa_usuario2").classList.remove("escondido");
         window.location.reload();
-
     } else if (localStorage.length !== 0) {
         window.location.reload();
     }

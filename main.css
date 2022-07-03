@@ -58,6 +58,7 @@ html {
 .caixa_geral {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   margin: 40px 0 0 0;
   width: calc(18px + 74vw);
   height: auto;
@@ -76,16 +77,21 @@ html {
   /*grid-template-columns: repeat(auto-fill, minmax(calc(5.5vw + 270px), 270px));*/
   /*grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1vw;*/
-  width: inherit;
+
+  /*width: inherit;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: wrap;*/
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1vw;
 
 }
 
 .caixa_geral_quizz {
-  width: 340px;
+  justify-self: stretch;
   height: calc(3vw + 180px);
   position: relative;
   margin: 0.5vh 0 0.5vh 0;

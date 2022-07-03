@@ -37,7 +37,7 @@ function abrir_quizz(elemento, id) {
 
 function limpar_pagina() {
     document.querySelector(".conteudo").innerHTML = "";
-
+    return;
 }
 
 
@@ -51,18 +51,26 @@ function comparador() {
 
 function pagina_reset() {
     window.location.reload();
+    return;
 }
 
 function reset_quizz() {
+    console.log("Resetou o quizz");
     reset_variables();
-    window.scrollTo(0, 0);
-    abrir_quizz(0, quizz_id);
+    //scroll to top of page after loading a quizz:
+    document.querySelector(".conteudo").scrollIntoView({ behavior: "smooth" });
+    setTimeout(function () { abrir_quizz(0, quizz_id) }, 1500);
+    //abrir_quizz(0, quizz_id);
+    return;
 };
 
 function quit_quizz() {
     reset_variables();
-    window.scrollTo(0, 0);
-    pagina_reset()
+    //scroll to top of page after loading a quizz:
+    document.querySelector(".conteudo").scrollIntoView({ behavior: "smooth" });
+    setTimeout(function () { pagina_reset() }, 1500);
+    //pagina_reset()
+    return;
 };
 
 function reset_variables() {
@@ -87,6 +95,7 @@ function reset_variables() {
 function pagina_inicio() {
 
     quizzes_carrega();
+    return;
 
 }
 
@@ -112,9 +121,16 @@ function comeca_quizz(quizz) {
 
     let quizz_terminou = false;
 
-    limpar_pagina();
+    //Cleans page content:  
+    //limpar_pagina();
 
+    //Scroll to top of page after loading a quizz:
     const page = document.querySelector(".conteudo");
+    setTimeout(function () { page.scrollIntoView({ behavior: "smooth" }) }, 250);
+
+    limpar_pagina();
+    //Cleans page content:
+    //setTimeout(function () { limpar_pagina() }, 1000);
 
     page.innerHTML += `
     <div class=quizz_header>
@@ -163,7 +179,6 @@ function comeca_quizz(quizz) {
                     </div>
                 </div>
             `;
-            //console.log(respostas[j].isCorrectAnswer);
             if (respostas[j].isCorrectAnswer == true) {
                 gabarito_quizz.push(j);
             }
@@ -182,7 +197,6 @@ function quizz_option_select(element, question, option, total_respostas_pergunta
 
     let answer_status = false;
     user_options[question] = [question, option];
-    //console.log(user_options);
     if (gabarito_quizz[question] == option) {
         answer_status = true;
     }
@@ -238,7 +252,6 @@ function apply_answer_overlay(question, answer_status, total_respostas_pergunta)
 function calculate_score() {
 
     for (let i = 0; i < gabarito_quizz.length; i++) {
-        console.log("user answered: " + user_options[i][1]);
         if (user_options[i][1] == gabarito_quizz[i]) {
             user_score_value++;
         }
@@ -323,7 +336,6 @@ function scroll_to_next(answered_question) {
     }
 
     if (!skipped_questions) {
-        console.log("Entrou no scroll para proxima questao");
         const question_to_scroll = document.querySelector(`.question_box_${first_unanswered}`);
         const scroll_question = setTimeout(function () { question_to_scroll.scrollIntoView({ behavior: "smooth" }) }, 2000);
     };

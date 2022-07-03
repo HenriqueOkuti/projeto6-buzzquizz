@@ -256,18 +256,27 @@ function calculate_score() {
 
     user_score_percentage = Math.round(100 * Number(user_score_value) / Number(gabarito_quizz.length));
 
-    let arr = [];
+    let index_largest_closest = 0;
+    let largest_closest = scores[index_largest_closest].minValue;
+    
     for (let i = 0; i < scores.length; i++) {
-        arr.push(scores[i].minValue);
-    }
-
-    let number = arr.sort().reverse().find(e => e <= user_score_percentage);
-    for (let i = 0; i < scores.length; i++) {
-        if (scores[i].minValue == number) {
-            add_result_screen(scores[i]);
+        
+        if (scores[i].minValue > user_score_percentage) {
+            continue;
         }
-    }
+        else if (scores[i].minValue <= user_score_percentage && user_score_percentage >= largest_closest){
+            largest_closest = scores[i].minValue;
+            index_largest_closest = i;
 
+            //console.log("Entrou");
+            //console.log(scores[i].minValue);
+            //console.log(user_score_percentage);
+            //console.log(largest_closest);
+        }
+        
+    }
+    //console.log(scores[index_largest_closest]);
+    add_result_screen(scores[index_largest_closest]);
     return;
 };
 

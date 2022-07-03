@@ -19,10 +19,12 @@
 <body onload="pagina_inicio();">
 
     <div class="header">
-        <a href="" class="redirect_home"><div class="header_titulo">BuzzQuizz</div></a>
+        <a href="" class="redirect_home">
+            <div class="header_titulo">BuzzQuizz</div>
+        </a>
     </div>
 
-    <div class="conteudo ">
+    <div class="conteudo">
         <div class="caixa_usuario">
             Quizzes do usuario
         </div>
@@ -39,61 +41,40 @@
 
     <div class="informacoes-basicas escondido">
         <h2>Comece pelo começo</h2>
-        <div class="caracteristicas">
-            <input class="titulo-quizz" type="text" placeholder="Título do seu quizz">
-            <input class="imagem-quizz" type="text" placeholder="URL da imagem do seu quizz">
-            <input class="qtd-perguntas" type="text" placeholder="Quantidade de perguntas do quizz">
-            <input class="qtd-niveis" type="text" placeholder="Quantidade de níveis do quizz">
-        </div>
-        <button class="botao-continuar" onclick="prosseguirParaCriarPerguntas()">Prosseguir para criar perguntas</button>
+        <div class=" caracteristicas">
+        <input class="titulo-quizz" type="text" placeholder="Título do seu quizz">
+        <input class="imagem-quizz" type="text" placeholder="URL da imagem do seu quizz">
+        <input class="qtd-perguntas" type="text" placeholder="Quantidade de perguntas do quizz">
+        <input class="qtd-niveis" type="text" placeholder="Quantidade de níveis do quizz">
+    </div>
+    <button class="botao-continuar" onclick="prosseguirParaCriarPerguntas(this)">Prosseguir para criar
+        perguntas</button>
     </div>
 
     <div class="criar-perguntas escondido">
         <h2>Crie suas perguntas</h2>
-        <div class="perguntas">
-            <h3>Pergunta 1</h3>
-            <input class="texto-pergunta" type="text" placeholder="Texto da pergunta">
-            <input class="cor-pergunta" type="text" placeholder="Cor de fundo da pergunta">
-            <h3>Resposta correta</h3>
-            <input class="resposta-correta" type="text" placeholder="Resposta correta">
-            <input class="url-correta" type="text" placeholder="URL da imagem">
-            <h3>Respostas incorretas</h3>
-            <div class="outrasperguntas">
-                <input class="resposta-incorreta1" type="text" placeholder="Resposta incorreta 1">
-                <input class="url-incorreta1" type="text" placeholder="URL da imagem 1">
-
-                <input class="resposta-incorreta2 escondido" type="text" placeholder="Resposta incorreta 2">
-                <input class="url-incorreta2 escondido" type="text" placeholder="URL da imagem 2">
-
-                <input class="resposta-incorreta3 escondido" type="text" placeholder="Resposta incorreta 3">
-                <input class="url-incorreta3 escondido" type="text" placeholder="URL da imagem 3">
-            </div>
-        </div>
-        <div class="perguntas2">
-
-        </div>
-        <ul class="perguntas-fechadas">
+        <ul class="perguntas">
         </ul>
 
         <button class="botao-continuar" onclick="prosseguirParaCriarNiveis()">Prosseguir para criar níveis</button>
-
     </div>
 
     <div class="criar-niveis escondido">
         <h2>Agora, decida os níveis</h2>
-        <div class="perguntas">
-            <h3>Nível 1</h3>
-            <input class="titulo-nivel" type="text" placeholder="Título do nível">
-            <input class="acerto-nivel" type="text" placeholder="% de acerto mínima">
-            <input class="imagem-nivel" type="text" placeholder="URL da imagem do nível">
-            <input class="descricao-nivel" type="text" placeholder="Descrição do nível">
-        </div>
-        <ul class="niveis-fechados">
-        
+        <ul class="niveis">
         </ul>
 
         <button class="botao-continuar" onclick="finalizarQuizz()">Finalizar Quizz</button>
     </div>
+
+    <div class="quizz-pronto escondido">
+        <h2>Seu quizz está pronto!</h2>
+        <div class="quizz-img-legenda">
+        </div>
+        <button class="botao-continuar-acessar" onclick="acessarQuizz()">Acessar quizz</button>
+        <p onclick="voltarHome()">Voltar para home</p>
+    </div>
+
 
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

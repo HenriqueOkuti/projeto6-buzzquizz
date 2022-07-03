@@ -71,7 +71,8 @@ html {
   color: #000;
 }
 
-.caixa_geral_lista {
+.caixa_geral_lista,
+.list_user_quizz {
   /*width: 100vw;
   display: grid;*/
   /*grid-template-columns: repeat(auto-fill, minmax(calc(5.5vw + 270px), 270px));*/
@@ -90,7 +91,14 @@ html {
 
 }
 
-.caixa_geral_quizz {
+.list_user_quizz {
+  grid-template-columns: repeat() grid-template-rows: 1fr;
+  height: fit-content;
+  overflow-y: hidden;
+}
+
+.caixa_geral_quizz,
+.user_quizz {
   justify-self: stretch;
   height: calc(3vw + 180px);
   position: relative;
@@ -98,7 +106,8 @@ html {
   border-radius: 5px;
 }
 
-.caixa_geral_quizz img {
+.caixa_geral_quizz img,
+.user_quizz img {
   height: 100%;
   width: 100%;
 }
@@ -166,7 +175,8 @@ html {
   height: 100%;
   color: #fff;
   font-weight: 400;
-  font-size: calc(3.25vw + 19px);
+  /*font-size: calc(3.25vw + 19px);*/
+  font-size: 39px;
   line-height: 46px;
   background-image: linear-gradient(180deg,
       rgba(255, 255, 255, 0) 0%,
@@ -201,8 +211,8 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
   width: 70vw;
   height: auto;
 
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px 0px rgba(109, 109, 109, 0.75);
+  /*border-radius: 5px;*/
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 
   margin-bottom: 45px;
 
@@ -237,12 +247,13 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
 
   color: #fff;
 
-  border-radius: 4px;
+  /*border-radius: 4px;*/
 }
 
 .question_title_text {
   width: 80vw;
-  word-break: break-all;
+  word-break: break-word;
+  ;
 }
 
 .question_box_content {
@@ -287,11 +298,13 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
   width: 25.5vw;
   height: 14vw;
   object-fit: cover;
-  border-radius: 4px;
+  /*border-radius: 4px;*/
 }
 
 .answer_text {
-  font-size: calc(0.8vw + 13px);
+  /*font-size: calc(0.8vw + 13px);*/
+  font-size: 20px;
+  line-height: 25px;
   line-height: min(20px);
   width: 30vw;
   padding: 0.8vh 2vw 2vh 2vw;
@@ -434,34 +447,38 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
   margin-left: 17px;
 }
 
-.list_user_quizz {
-  display: flex;
+/*.list_user_quizz {
+  /*display: flex;*/
+/* display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 
-  height: calc(3vw + 180px);
-  min-width: 340px;
+ /* height: calc(3vw + 180px);
+  width: 100%;
 
-  border: 2px dashed #d4d4d4;
-  border-radius: 5px;
+  /*border: 2px dashed #d4d4d4;*/
+/* border-radius: 5px;
 
-  overflow-x: scroll;
+  /*overflow-x: scroll;*/
+/* overflow-x: auto;
   overflow-y: hidden;
-}
+  
+}*/
 
-.user_quizz {
+/*.user_quizz {
   position: relative;
 
   display: flex;
   /*justify-content: center;*/
-  /*align-items: center;*/
+/*align-items: center;*/
 
 
-  width: 340px;
+/*  width: 340px;
   height: calc(3vw + 180px);
 
   border-radius: 5px;
 
   padding: 0 10px 0 0;
-}
+}*/
 
 .user_quizz_background {
   position: absolute;
@@ -495,12 +512,14 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
     min-width: 340px;
   }
 
-  .caixa_geral_lista {
+  .caixa_geral_lista,
+  .list_user_quizz {
     display: grid;
     grid-template-columns: 1fr;
   }
 
-  .caixa_geral_quizz {
+  .caixa_geral_quizz,
+  .user_quizz {
     width: 100%;
     margin-left: 0;
     margin-right: 0;
@@ -840,13 +859,34 @@ li {
     font-size: 18px;
   }
 
-  .img-legenda{
+  .quizz-pronto>button {
+    width: 220px;
+  }
+
+  .quizz-pronto>p {
+    font-size: 18px;
+  }
+
+  .img-legenda {
     max-width: 500px;
     width: 90vw;
   }
 
+  .user_quizz {
+    width: 100%;
+  }
+
+  .quizz_header_titulo {
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .question_title_text {
+    font-size: 19px;
+  }
+
 }
- 
+
 .escondido {
   display: none;
 }

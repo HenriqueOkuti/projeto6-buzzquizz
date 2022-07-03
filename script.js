@@ -355,7 +355,7 @@ function insert_user_questions() {
     document.querySelector(".caixa_seusquizzes").innerHTML = "";
 
     let user_box = document.querySelector(".caixa_seusquizzes");
-    
+
     user_box.innerHTML = `
     <div class="insert_new_user_quizz">
     <span>Seus quizzes</span>

@@ -22,7 +22,7 @@ let objeto = {
 };
 
 function prosseguirParaCriarPerguntas() {
-    /*titulo = document.querySelector(".titulo-quizz").value;
+    titulo = document.querySelector(".titulo-quizz").value;
     tituloOk = (titulo.length >= 20 && titulo.length <= 65);
 
     imagemUrl = document.querySelector(".imagem-quizz").value;
@@ -32,9 +32,9 @@ function prosseguirParaCriarPerguntas() {
     qtdPerguntasOk = (qtdPerguntas >= 3);
 
     qtdNiveis = document.querySelector(".qtd-niveis").value;
-    qtdNiveisOk = (qtdNiveis >= 2);*/
+    qtdNiveisOk = (qtdNiveis >= 2);
 
-    titulo = document.querySelector(".titulo-quizz").value = "Título do quizz aqui";
+    /*titulo = document.querySelector(".titulo-quizz").value = "Título do quizz aqui";
     tituloOk = (titulo.length >= 20 && titulo.length <= 65);
 
     imagemUrl = document.querySelector(".imagem-quizz").value = "https://http.cat/411.jpg";
@@ -43,7 +43,7 @@ function prosseguirParaCriarPerguntas() {
     qtdPerguntas = document.querySelector(".qtd-perguntas").value = "3";
     qtdPerguntasOk = (qtdPerguntas >= 3);
 
-    qtdNiveis = document.querySelector(".qtd-niveis").value = "3";
+    qtdNiveis = document.querySelector(".qtd-niveis").value = "3";*/
     qtdNiveisOk = (qtdNiveis >= 2);
     //////////////
     if (tituloOk && imagemUrlOk && qtdPerguntasOk && qtdNiveisOk) {
@@ -162,7 +162,7 @@ function verificarInputPerguntas(i) {
         isCorrectAnswer: false
     }
 
-    /*let textoPergunta = document.querySelector(`.textopergunta-${i}`).value;
+    let textoPergunta = document.querySelector(`.textopergunta-${i}`).value;
     let textoPerguntaOk = (textoPergunta.length >= 20);
 
     let corFundo = document.querySelector(`.corpergunta-${i}`).value;
@@ -185,9 +185,9 @@ function verificarInputPerguntas(i) {
 
     let respostaIncorreta3 = document.querySelector(`.respostai3-${i}`).value;
     let imagemIncorreta3 = document.querySelector(`.urli3-${i}`).value;
-    let respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== undefined) && conferirUrl(imagemIncorreta3) === true);*/
+    let respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== undefined) && conferirUrl(imagemIncorreta3) === true);
 
-    let textoPergunta = document.querySelector(`.textopergunta-${i}`).value = "Texto da perguntinha";
+    /*let textoPergunta = document.querySelector(`.textopergunta-${i}`).value = "Texto da perguntinha";
     let textoPerguntaOk = (textoPergunta.length >= 20);
 
     let corFundo = document.querySelector(`.corpergunta-${i}`).value = "#eeeeee";
@@ -210,7 +210,7 @@ function verificarInputPerguntas(i) {
 
     let respostaIncorreta3 = document.querySelector(`.respostai3-${i}`).value = "";
     let imagemIncorreta3 = document.querySelector(`.urli3-${i}`).value = "";
-    let respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== '') && conferirUrl(imagemIncorreta3) === true);
+    let respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== '') && conferirUrl(imagemIncorreta3) === true);*/
     ///////////
     let caso1 = (respostaEImgIncorretas1Ok && respostaEImgIncorretas2Ok === false && respostaEImgIncorretas3Ok === false);
     let caso2 = (respostaEImgIncorretas1Ok && respostaEImgIncorretas2Ok && (respostaEImgIncorretas3Ok === false));
@@ -316,7 +316,7 @@ function finalizarQuizz() {
             minValue: ''
         }
 
-        /*let tituloNivel = document.querySelector(`.titulonivel-${i}`).value;
+        let tituloNivel = document.querySelector(`.titulonivel-${i}`).value;
         let tituloNivelOk = (tituloNivel.length >= 10);
 
         let acertoNivel = document.querySelector(`.acertonivel-${i}`).value;
@@ -326,9 +326,9 @@ function finalizarQuizz() {
         let imagemNivelOk = conferirUrl(imagemNivel);
 
         let descricaoNivel = document.querySelector(`.descricaonivel-${i}`).value;
-        let descricaoNivelOk = (descricaoNivel.length >= 30);*/
+        let descricaoNivelOk = (descricaoNivel.length >= 30);
 
-        let tituloNivel = document.querySelector(`.titulonivel-${i}`).value = "Título do Nível";
+        /*let tituloNivel = document.querySelector(`.titulonivel-${i}`).value = "Título do Nível";
         let tituloNivelOk = (tituloNivel.length >= 10);
 
         let acertoNivel = document.querySelector(`.acertonivel-${i}`).value;
@@ -338,7 +338,7 @@ function finalizarQuizz() {
         let imagemNivelOk = conferirUrl(imagemNivel);
 
         let descricaoNivel = document.querySelector(`.descricaonivel-${i}`).value = "Descrição do nível-----------------------------------";
-        let descricaoNivelOk = (descricaoNivel.length >= 30);
+        let descricaoNivelOk = (descricaoNivel.length >= 30);*/
 
         if (tituloNivelOk && acertoNivelOk && imagemNivelOk && descricaoNivelOk) {
 

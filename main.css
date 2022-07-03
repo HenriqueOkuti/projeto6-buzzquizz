@@ -465,6 +465,8 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
   height: calc(3vw + 180px);
 
   border-radius: 5px;
+
+  padding: 0 10px 0 0;
 }
 
 .user_quizz_background {

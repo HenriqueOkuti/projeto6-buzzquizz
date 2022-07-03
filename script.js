@@ -353,8 +353,10 @@ function insert_user_questions() {
 
     document.querySelector(".caixa_usuario").classList.add("escondido");
     document.querySelector(".caixa_seusquizzes").classList.remove("escondido");
+    document.querySelector(".caixa_seusquizzes").innerHTML = "";
 
     let user_box = document.querySelector(".caixa_seusquizzes");
+    
     user_box.innerHTML = `
     <div class="insert_new_user_quizz">
     <span>Seus quizzes</span>
@@ -362,16 +364,17 @@ function insert_user_questions() {
     <img src="./files/plus_icon.svg" />
     </buttom>
     </div>
+    <div class="list_user_quizz">
+    </div>
     `;
 
-    for (let i = 0; i < num_user_quizzes; i++) {
+    user_box = document.querySelector(".list_user_quizz");
+    for (let i = num_user_quizzes - 1; i >= 0; i--) {
         user_box.innerHTML += `
-        <div class="list_user_quizz">
             <div class="user_quizz user_quizz2" onclick="abrir_quizz(this, ${keys_object[i].id});">
                 <img class="user_quizz user_quizz_background" src="${keys_object[i].background_image}" />
                 <div class="user_quizz user_quizz_titulo"><span>${keys_object[i].title}</span></div>
             </div>
-        </div>
         `;
 
 

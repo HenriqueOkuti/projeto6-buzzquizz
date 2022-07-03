@@ -26,6 +26,9 @@ function quizzes_carrega() {
 
 function abrir_quizz(elemento, id) {
 
+    const scroll_to_top = document.querySelector(`html`);
+    setTimeout(function () { scroll_to_top.scrollIntoView({ behavior: "smooth" }) }, 200);
+
     quizz_id = id;
     const quizz_carregado = axios.get(`https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes/${id}`);
     quizz_carregado.then(comeca_quizz);

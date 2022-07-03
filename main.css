@@ -518,6 +518,7 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
 
   .answer_option {
     /*max-width: 160px;*/
+    justify-self: center;
   }
 
   .question_box {
@@ -537,18 +538,19 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
   }
 
   .answer_box {
+    min-width: 340px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 13vw;
+    /*gap: 13vw;*/
     word-break: break-word;
-    width: auto;
+    width: 84vw;
   }
 
   .answer_image {
     min-width: 163px;
     min-height: 113px;
-    width: auto;
-    height: auto;
+    /*width: auto;
+    height: auto;*/
   }
 
   .answer_text {
@@ -564,7 +566,10 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
   }
 
   .results_content {
-    width: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-width: 340px;
+    width: 80vw;
   }
 
   .caixa_seusquizzes {

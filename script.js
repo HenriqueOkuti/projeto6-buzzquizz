@@ -26,6 +26,9 @@ function quizzes_carrega() {
 
 function abrir_quizz(elemento, id) {
 
+    const scroll_to_top = document.querySelector(`html`);
+    setTimeout(function () { scroll_to_top.scrollIntoView({ behavior: "smooth" }) }, 200);
+
     quizz_id = id;
     const quizz_carregado = axios.get(`https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes/${id}`);
     quizz_carregado.then(comeca_quizz);
@@ -55,13 +58,15 @@ function pagina_reset() {
 
 function reset_quizz() {
     reset_variables();
-    window.scrollTo(0, 0);
+    const scroll_to_top = document.querySelector(`html`);
+    setTimeout(function () { scroll_to_top.scrollIntoView({ behavior: "smooth" }) }, 200);
     abrir_quizz(0, quizz_id);
 };
 
 function quit_quizz() {
     reset_variables();
-    window.scrollTo(0, 0);
+    const scroll_to_top = document.querySelector(`html`);
+    setTimeout(function () { scroll_to_top.scrollIntoView({ behavior: "smooth" }) }, 200);
     pagina_reset()
 };
 
@@ -79,6 +84,13 @@ function reset_variables() {
     return;
 }
 
+function verify_localkeys() {
+    if (localStorage.getItem("quizzesCriados") !== null) {
+        insert_user_questions();
+    };
+    return;
+}
+
 /*========================
     MAIN FUNCTIONS
 ========================*/
@@ -87,6 +99,7 @@ function reset_variables() {
 function pagina_inicio() {
 
     quizzes_carrega();
+    verify_localkeys();
 
 }
 
@@ -163,7 +176,6 @@ function comeca_quizz(quizz) {
                     </div>
                 </div>
             `;
-            //console.log(respostas[j].isCorrectAnswer);
             if (respostas[j].isCorrectAnswer == true) {
                 gabarito_quizz.push(j);
             }
@@ -182,7 +194,6 @@ function quizz_option_select(element, question, option, total_respostas_pergunta
 
     let answer_status = false;
     user_options[question] = [question, option];
-    //console.log(user_options);
     if (gabarito_quizz[question] == option) {
         answer_status = true;
     }
@@ -238,7 +249,6 @@ function apply_answer_overlay(question, answer_status, total_respostas_pergunta)
 function calculate_score() {
 
     for (let i = 0; i < gabarito_quizz.length; i++) {
-        console.log("user answered: " + user_options[i][1]);
         if (user_options[i][1] == gabarito_quizz[i]) {
             user_score_value++;
         }
@@ -303,8 +313,8 @@ function scroll_to_next(answered_question) {
 
     //Searches for first unanswered question:
     let first_unanswered = 0;
-    for (let i = 0; i<user_options.length; i++){
-        if (user_options[i][0] == undefined){
+    for (let i = 0; i < user_options.length; i++) {
+        if (user_options[i][0] == undefined) {
             first_unanswered = i;
             break;
         }
@@ -312,18 +322,17 @@ function scroll_to_next(answered_question) {
 
     //Verifies if all questions have been answered:
     let skipped_questions = false;
-    for (let i = 0; i<user_options.length; i++){
-        if (user_options[i][0] == undefined){
+    for (let i = 0; i < user_options.length; i++) {
+        if (user_options[i][0] == undefined) {
             skipped_questions = false;
             break;
         }
-        else if (user_options[i][0] != undefined){
+        else if (user_options[i][0] != undefined) {
             skipped_questions = true;
         }
     }
 
     if (!skipped_questions) {
-        console.log("Entrou no scroll para proxima questao");
         const question_to_scroll = document.querySelector(`.question_box_${first_unanswered}`);
         const scroll_question = setTimeout(function () { question_to_scroll.scrollIntoView({ behavior: "smooth" }) }, 2000);
     };
@@ -334,6 +343,41 @@ function scroll_to_next(answered_question) {
     }
 
     return;
+}
+
+function insert_user_questions() {
+    let keys_object = JSON.parse(window.localStorage.getItem('quizzesCriados'));
+
+    let num_user_quizzes = keys_object.length;
+
+    document.querySelector(".caixa_usuario").classList.add("escondido");
+    document.querySelector(".caixa_seusquizzes").classList.remove("escondido");
+    document.querySelector(".caixa_seusquizzes").innerHTML = "";
+
+    let user_box = document.querySelector(".caixa_seusquizzes");
+    
+    user_box.innerHTML = `
+    <div class="insert_new_user_quizz">
+    <span>Seus quizzes</span>
+    <button onclick="criarQuizz();">
+    <img src="./files/plus_icon.svg" />
+    </buttom>
+    </div>
+    <div class="list_user_quizz">
+    </div>
+    `;
+
+    user_box = document.querySelector(".list_user_quizz");
+    for (let i = num_user_quizzes - 1; i >= 0; i--) {
+        user_box.innerHTML += `
+            <div class="user_quizz user_quizz2" onclick="abrir_quizz(this, ${keys_object[i].id});">
+                <img class="user_quizz user_quizz_background" src="${keys_object[i].background_image}" />
+                <div class="user_quizz user_quizz_titulo"><span>${keys_object[i].title}</span></div>
+            </div>
+        `;
+
+
+    }
 }
 
 //document.getElementById('scroll-here-plz').scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});

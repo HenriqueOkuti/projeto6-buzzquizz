@@ -210,7 +210,7 @@ function verificarInputPerguntas(i) {
 
     let respostaIncorreta3 = document.querySelector(`.respostai3-${i}`).value = "";
     let imagemIncorreta3 = document.querySelector(`.urli3-${i}`).value = "";
-    let respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== undefined) && conferirUrl(imagemIncorreta3) === true);
+    let respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== '') && conferirUrl(imagemIncorreta3) === true);
     ///////////
     let caso1 = (respostaEImgIncorretas1Ok && respostaEImgIncorretas2Ok === false && respostaEImgIncorretas3Ok === false);
     let caso2 = (respostaEImgIncorretas1Ok && respostaEImgIncorretas2Ok && (respostaEImgIncorretas3Ok === false));
@@ -413,17 +413,17 @@ function imagemQuizzPronto() {
 function acessarQuizz(elemento) {
     //visualizar o quizz criado (Tela 2) ?????????????;
     document.querySelector(".quizz-pronto").classList.add("escondido");
-    abrir_quizz(elemento, `${elemento.id}`);
-    
+    document.querySelector(".conteudo").classList.remove("escondido");
+    abrir_quizz(elemento, id_ultimo_quizz);
 }
 
 function voltarHome() {
-    if (localStorage.length === 0) {
+    document.querySelector(".conteudo").classList.remove("escondido");
 
+    if (localStorage.length === 0) {
         document.querySelector(".caixa_usuario").classList.add("escondido");
         document.querySelector(".caixa_usuario2").classList.remove("escondido");
         window.location.reload();
-
     } else if (localStorage.length !== 0) {
         window.location.reload();
     }
@@ -435,7 +435,7 @@ function voltarHome() {
 function enviarQuizzCriado() {
     filtrarPerguntasValidas();
 
-    //const promise = axios.post("https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes", objeto);
+    const promise = axios.post("https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes", objeto);
 
     promise.catch(erroAoEnviar);
     promise.then(salvarLocalStorage);
@@ -448,11 +448,13 @@ function erroAoEnviar(erro) {
 
 function salvarLocalStorage(resposta) {
     console.log("Deu certo :)");
+    // console.log(resposta); // Usei para conferir o objeto que chega como resposta para pegar o id postado no servidor
 
     let quizzesCriados = JSON.parse(localStorage.getItem("quizzesCriados") || "[]");
+    id_ultimo_quizz = resposta.data.id;
 
     quizzesCriados.push({
-        id: resposta.data.id,
+        id: `${resposta.data.id}`,
         title: resposta.data.title,
         background_image: resposta.data.image
     });
@@ -469,3 +471,6 @@ function filtrarPerguntasValidas() {
     }
 }
 
+// Variaveis adicionais (Henrique):
+let id_ultimo_quizz; //Essa variavel guarda o id do quizz postado
+let elemento = null; //Essa variavel serve para absolutamente nada mas eu esqueci de tirar ela

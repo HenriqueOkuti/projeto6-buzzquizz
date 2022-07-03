@@ -534,6 +534,7 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
   height: 270px;
   border-radius: 5px;
   position: relative;
+  cursor: pointer;
 }
 
 .caracteristicas, 
@@ -631,8 +632,38 @@ li {
   position: absolute;
   bottom: 10px;
   left: 20px;
+  margin-right: 5px;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .escondido {
   display: none;
+}
+
+
+/*Botão criar quizz e listagem*/
+
+.caixa_usuario{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.caixa_usuario>p{
+  font-size: 20px;
+  color: #B9B9B9;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.caixa_usuario>button{
+  width: 135px;
+  height: 40px;
+  font-size: 21px;
+  text-align: center;
+  color: #EC362D;
+  border: 1px dashed #EC362D;
+  border-radius: 50px;
 }

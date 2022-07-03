@@ -1,3 +1,8 @@
+function criarQuizz(){
+    document.querySelector(".conteudo").classList.add("escondido");
+    document.querySelector(".informacoes-basicas").classList.remove("escondido");
+}
+
 // Criar quiz: Informações básicas:::::::::
 
 let titulo;
@@ -17,7 +22,7 @@ let objeto = {
 };
 
 function prosseguirParaCriarPerguntas() {
-    /*titulo = document.querySelector(".titulo-quizz").value;
+    titulo = document.querySelector(".titulo-quizz").value;
     tituloOk = (titulo.length >= 20 && titulo.length <= 65);
 
     imagemUrl = document.querySelector(".imagem-quizz").value;
@@ -27,9 +32,9 @@ function prosseguirParaCriarPerguntas() {
     qtdPerguntasOk = (qtdPerguntas >= 3);
 
     qtdNiveis = document.querySelector(".qtd-niveis").value;
-    qtdNiveisOk = (qtdNiveis >= 2);*/
+    qtdNiveisOk = (qtdNiveis >= 2);
 
-    titulo = document.querySelector(".titulo-quizz").value = "Título do quizz aqui";
+    /*titulo = document.querySelector(".titulo-quizz").value = "Título do quizz aqui";
     tituloOk = (titulo.length >= 20 && titulo.length <= 65);
 
     imagemUrl = document.querySelector(".imagem-quizz").value = "https://http.cat/411.jpg";
@@ -39,7 +44,7 @@ function prosseguirParaCriarPerguntas() {
     qtdPerguntasOk = (qtdPerguntas >= 3);
 
     qtdNiveis = document.querySelector(".qtd-niveis").value = "3";
-    qtdNiveisOk = (qtdNiveis >= 2);
+    qtdNiveisOk = (qtdNiveis >= 2);*/
     //////////////
     if (tituloOk && imagemUrlOk && qtdPerguntasOk && qtdNiveisOk) {
         document.querySelector(".informacoes-basicas").classList.add("escondido");
@@ -121,15 +126,8 @@ function fecharCaixaPergunta(i) {
 }
 
 function corHexadecimal(cor) {
-    for (let i = 1; i < cor.length; i++) {
-        if (cor[i] === "A" || cor[i] === "B" || cor[i] === "C" || cor[i] === "D" || cor[i] === "E" || cor[i] === "F" || cor[i] === "a" || cor[i] === "b" || cor[i] === "c" || cor[i] === "d" || cor[i] === "e" || cor[i] === "f") {
-            return true;
-        } else if (cor[i].type === Number) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+        const regex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/i;
+        return regex.test(cor);
 }
 
 function verificarInputPerguntas(i) {
@@ -164,7 +162,7 @@ function verificarInputPerguntas(i) {
         isCorrectAnswer: false
     }
 
-    /*let textoPergunta = document.querySelector(`.textopergunta-${i}`).value;
+    let textoPergunta = document.querySelector(`.textopergunta-${i}`).value;
     let textoPerguntaOk = (textoPergunta.length >= 20);
 
     let corFundo = document.querySelector(`.corpergunta-${i}`).value;
@@ -187,13 +185,13 @@ function verificarInputPerguntas(i) {
 
     let respostaIncorreta3 = document.querySelector(`.respostai3-${i}`).value;
     let imagemIncorreta3 = document.querySelector(`.urli3-${i}`).value;
-    let respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== undefined) && conferirUrl(imagemIncorreta3) === true);*/
+    let respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== undefined) && conferirUrl(imagemIncorreta3) === true);
 
-    let textoPergunta = document.querySelector(`.textopergunta-${i}`).value = "Texto da perguntinha";
+    /*let textoPergunta = document.querySelector(`.textopergunta-${i}`).value = "Texto da perguntinha";
     let textoPerguntaOk = (textoPergunta.length >= 20);
 
-    let corFundo = document.querySelector(`.corpergunta-${i}`).value = "#e8e8e8";
-    let corFundoOk = ((corHexadecimal(corFundo) === true) && corFundo[0] === "#" && corFundo.length === 7);
+    let corFundo = document.querySelector(`.corpergunta-${i}`).value = "#eeeeee";
+    let corFundoOk = corHexadecimal(corFundo);
 
     let respostaCorreta = document.querySelector(`.respostac-${i}`).value = "Resposta Número 1";
     let respostaCorretaOk = (respostaCorreta !== '');
@@ -212,7 +210,7 @@ function verificarInputPerguntas(i) {
 
     let respostaIncorreta3 = document.querySelector(`.respostai3-${i}`).value = "";
     let imagemIncorreta3 = document.querySelector(`.urli3-${i}`).value = "";
-    let respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== undefined) && conferirUrl(imagemIncorreta3) === true);
+    let respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== undefined) && conferirUrl(imagemIncorreta3) === true);*/
     ///////////
     let caso1 = (respostaEImgIncorretas1Ok && respostaEImgIncorretas2Ok === false && respostaEImgIncorretas3Ok === false);
     let caso2 = (respostaEImgIncorretas1Ok && respostaEImgIncorretas2Ok && (respostaEImgIncorretas3Ok === false));
@@ -276,7 +274,7 @@ function prosseguirParaCriarNiveis() {
 // Criar quiz: Crie níveis::::::::: 
 
 function quantidadeDeNiveis() {
-    crieNiveis = document.querySelector(".niveis");
+    let crieNiveis = document.querySelector(".niveis");
 
     for (i = 1; i <= qtdNiveis; i++) {
         crieNiveis.innerHTML = crieNiveis.innerHTML + `
@@ -309,7 +307,6 @@ function fecharCaixaNivel(i) {
 }
 
 function finalizarQuizz() {
-
     objeto.levels = [];
 
     for (let i = 1; i <= qtdNiveis; i++) {
@@ -321,7 +318,7 @@ function finalizarQuizz() {
             minValue: ''
         }
 
-        /*let tituloNivel = document.querySelector(`.titulonivel-${i}`).value;
+        let tituloNivel = document.querySelector(`.titulonivel-${i}`).value;
         let tituloNivelOk = (tituloNivel.length >= 10);
 
         let acertoNivel = document.querySelector(`.acertonivel-${i}`).value;
@@ -331,9 +328,9 @@ function finalizarQuizz() {
         let imagemNivelOk = conferirUrl(imagemNivel);
 
         let descricaoNivel = document.querySelector(`.descricaonivel-${i}`).value;
-        let descricaoNivelOk = (descricaoNivel.length >= 30);*/
+        let descricaoNivelOk = (descricaoNivel.length >= 30);
 
-        let tituloNivel = document.querySelector(`.titulonivel-${i}`).value = "Título do Nível";
+        /*let tituloNivel = document.querySelector(`.titulonivel-${i}`).value = "Título do Nível";
         let tituloNivelOk = (tituloNivel.length >= 10);
 
         let acertoNivel = document.querySelector(`.acertonivel-${i}`).value = "0";
@@ -343,7 +340,7 @@ function finalizarQuizz() {
         let imagemNivelOk = conferirUrl(imagemNivel);
 
         let descricaoNivel = document.querySelector(`.descricaonivel-${i}`).value = "Descrição do nível-----------------------------------";
-        let descricaoNivelOk = (descricaoNivel.length >= 30);
+        let descricaoNivelOk = (descricaoNivel.length >= 30);*/
 
         if (tituloNivelOk && acertoNivelOk && imagemNivelOk && descricaoNivelOk) {
 
@@ -360,7 +357,6 @@ function finalizarQuizz() {
     }
 
     verificarSeAlgumNivelehZero();
-    imagemQuizzPronto();
 
 }
 
@@ -376,6 +372,7 @@ function verificarSeAlgumNivelehZero() {
     if (numdenivel0 >= 1) {
         document.querySelector(".criar-niveis").classList.add("escondido");
         document.querySelector(".quizz-pronto").classList.remove("escondido");
+        imagemQuizzPronto();
     } else {
         alert("Insira os dados corretamente. Verifique se um dos níveis possui o valor 0 (zero).");
         objeto.levels = [];
@@ -388,54 +385,24 @@ function verificarSeAlgumNivelehZero() {
 function imagemQuizzPronto() {
     let inserirImg = document.querySelector(".quizz-img-legenda");
 
-    inserirImg.innerHTML = inserirImg.innerHTML + `
-    <div class = "img-legenda" style="background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.8) 65.62%, rgba(0, 0, 0, 0.8) 100%), url(${objeto.image}); background-size: 100%;">
+    inserirImg.innerHTML += `
+    <div class = "img-legenda" style="background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.8) 65.62%, rgba(0, 0, 0, 0.8) 100%), url(${objeto.image}); background-size: 100%;" onclick="acessarQuizz()">
         <p class="legenda-imagem">${objeto.title}</p>
     </div>
     `
 }
 
+function acessarQuizz(){
+    //visualizar o quizz criado (Tela 2);
+    document.querySelector(".quizz-pronto").classList.add("escondido");
+}
+
 function voltarHome(){
     window.location.reload();
+    //atualizar com quizzes criados;
 }
 
 
-// Criar quiz: Enviar para API e salvar no Local Storage::::::::: 
+// Enviar Quizz criado para API e salvar no Local Storage::::::::: 
 
-function limparPerguntasVazias(){
-    for (let i = 0; i < qtdPerguntas; i ++) {
-        objeto.questions[i].answers = objeto.questions[i].answers.filter(function(pergunta){
-            return pergunta.title !== "" && pergunta.image !== ""
-        })
-    }
-}
-
-
-function postarQuizz(){
-
-    limparPerguntasVazias();
-
-    //const promise = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", objeto);
-
-    promise.catch(erroPost);
-    promise.then(sucessoPost);
-}
-
-function erroPost(erro){
-    const status = erro.response.data
-    console.log(status);
-}
-
-function sucessoPost(resposta){
-    salvarLocalStorage(resposta);
-}
-
-
-function salvarLocalStorage(){
-    let quizzes = 
-}
-
-function voltarHome(){
-
-}
 

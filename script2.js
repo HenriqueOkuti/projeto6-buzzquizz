@@ -413,6 +413,8 @@ function imagemQuizzPronto() {
 function acessarQuizz() {
     //visualizar o quizz criado (Tela 2) ?????????????;
     document.querySelector(".quizz-pronto").classList.add("escondido");
+    document.querySelector(".conteudo").classList.remove("escondido");
+    abrir_quizz(elemento, id_ultimo_quizz);
 }
 
 function voltarHome() {
@@ -446,11 +448,13 @@ function erroAoEnviar(erro) {
 
 function salvarLocalStorage(resposta) {
     console.log("Deu certo :)");
+    // console.log(resposta); // Usei para conferir o objeto que chega como resposta para pegar o id postado no servidor
 
     let quizzesCriados = JSON.parse(localStorage.getItem("quizzesCriados") || "[]");
+    id_ultimo_quizz = resposta.data.id;
 
     quizzesCriados.push({
-        id: '1',
+        id: `${resposta.data.id}`,
         title: resposta.data.title,
         background_image: resposta.data.image
     });
@@ -467,3 +471,6 @@ function filtrarPerguntasValidas() {
     }
 }
 
+// Variaveis adicionais (Henrique):
+let id_ultimo_quizz; //Essa variavel guarda o id do quizz postado
+let elemento = null; //Essa variavel serve para absolutamente nada mas eu esqueci de tirar ela

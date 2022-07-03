@@ -43,8 +43,8 @@ function prosseguirParaCriarPerguntas() {
     qtdPerguntas = document.querySelector(".qtd-perguntas").value = "3";
     qtdPerguntasOk = (qtdPerguntas >= 3);
 
-    qtdNiveis = document.querySelector(".qtd-niveis").value = "3";*/
-    qtdNiveisOk = (qtdNiveis >= 2);
+    qtdNiveis = document.querySelector(".qtd-niveis").value = "3";
+    qtdNiveisOk = (qtdNiveis >= 2);*/
     //////////////
     if (tituloOk && imagemUrlOk && qtdPerguntasOk && qtdNiveisOk) {
         document.querySelector(".informacoes-basicas").classList.add("escondido");
@@ -185,7 +185,7 @@ function verificarInputPerguntas(i) {
 
     let respostaIncorreta3 = document.querySelector(`.respostai3-${i}`).value;
     let imagemIncorreta3 = document.querySelector(`.urli3-${i}`).value;
-    let respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== undefined) && conferirUrl(imagemIncorreta3) === true);
+    let respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== '') && conferirUrl(imagemIncorreta3) === true);
 
     /*let textoPergunta = document.querySelector(`.textopergunta-${i}`).value = "Texto da perguntinha";
     let textoPerguntaOk = (textoPergunta.length >= 20);
@@ -296,7 +296,6 @@ function quantidadeDeNiveis() {
 function abrirCaixaNivel(i) {
     document.querySelector(`.addnv-${i}`).classList.add("escondido");
     document.querySelector(`.nv-${i}`).classList.remove("escondido");
-
 }
 
 function fecharCaixaNivel(i) {
@@ -341,7 +340,6 @@ function finalizarQuizz() {
         let descricaoNivelOk = (descricaoNivel.length >= 30);*/
 
         if (tituloNivelOk && acertoNivelOk && imagemNivelOk && descricaoNivelOk) {
-
             objNivel.title = tituloNivel;
             objNivel.image = imagemNivel;
             objNivel.text = descricaoNivel;
@@ -379,7 +377,6 @@ function verificarSeAlgumNivelehZero() {
 }
 
 function verificarSeAlgumNivelehRepetido() {
-
 
     let contadorRepetidos = 0;
 

@@ -1,4 +1,4 @@
-function criarQuizz(){
+function criarQuizz() {
     document.querySelector(".conteudo").classList.add("escondido");
     document.querySelector(".informacoes-basicas").classList.remove("escondido");
 }
@@ -53,7 +53,7 @@ function prosseguirParaCriarPerguntas() {
         objeto.image = imagemUrl;
         quantidadeDePerguntas();
         quantidadeDeNiveis();
-        
+
     } else {
         alert("Insira os dados corretamente!");
     }
@@ -126,8 +126,8 @@ function fecharCaixaPergunta(i) {
 }
 
 function corHexadecimal(cor) {
-        const regex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/i;
-        return regex.test(cor);
+    const regex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/i;
+    return regex.test(cor);
 }
 
 function verificarInputPerguntas(i) {
@@ -331,7 +331,7 @@ function finalizarQuizz() {
         /*let tituloNivel = document.querySelector(`.titulonivel-${i}`).value = "Título do Nível";
         let tituloNivelOk = (tituloNivel.length >= 10);
 
-        let acertoNivel = document.querySelector(`.acertonivel-${i}`).value = "0";
+        let acertoNivel = document.querySelector(`.acertonivel-${i}`).value;
         let acertoNivelOk = (acertoNivel >= 0 && acertoNivel <= 100);
 
         let imagemNivel = document.querySelector(`.imgnivel-${i}`).value = "https://http.cat/401.jpg";
@@ -378,13 +378,13 @@ function verificarSeAlgumNivelehZero() {
     }
 }
 
-function verificarSeAlgumNivelehRepetido(){
-    
+function verificarSeAlgumNivelehRepetido() {
+
 
     let contadorRepetidos = 0;
 
     for (let i = 1; i < qtdNiveis; i++) {
-        if (Number(document.querySelector(`..acertonivel-${i}`).value) === Number(document.querySelector(`.acertonivel-${i+1}`).value)) {
+        if (Number(document.querySelector(`.acertonivel-${i}`).value) === Number(document.querySelector(`.acertonivel-${i + 1}`).value)) {
             contadorRepetidos = contadorRepetidos + 1;
         }
     }
@@ -410,12 +410,12 @@ function imagemQuizzPronto() {
     `
 }
 
-function acessarQuizz(){
+function acessarQuizz() {
     //visualizar o quizz criado (Tela 2) ?????????????;
     document.querySelector(".quizz-pronto").classList.add("escondido");
 }
 
-function voltarHome(){
+function voltarHome() {
     if (localStorage.length === 0) {
 
         document.querySelector(".caixa_usuario").classList.add("escondido");
@@ -450,24 +450,20 @@ function salvarLocalStorage(resposta) {
     let quizzesCriados = JSON.parse(localStorage.getItem("quizzesCriados") || "[]");
 
     quizzesCriados.push({
-        id: resposta.data.id,
+        id: '1',
         title: resposta.data.title,
         background_image: resposta.data.image
     });
 
     localStorage.setItem("quizzesCriados", JSON.stringify(quizzesCriados));
 
-    //renderizarMeusQuizzes();
 }
 
-function filtrarPerguntasValidas(){
-    for (let i = 0; i < qtdPerguntas; i ++) {
-        objeto.questions[i].answers = objeto.questions[i].answers.filter(function(pergunta){
+function filtrarPerguntasValidas() {
+    for (let i = 0; i < qtdPerguntas; i++) {
+        objeto.questions[i].answers = objeto.questions[i].answers.filter(function (pergunta) {
             return pergunta.title !== "" && pergunta.image !== ""
         })
     }
 }
 
-/*function renderizarMeusQuizzes(){
-    //inserir na class="caixa_seusquizzes" o quizz feito 
-}*/

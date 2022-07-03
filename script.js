@@ -58,13 +58,15 @@ function pagina_reset() {
 
 function reset_quizz() {
     reset_variables();
-    window.scrollTo(0, 0);
+    const scroll_to_top = document.querySelector(`html`);
+    setTimeout(function () { scroll_to_top.scrollIntoView({ behavior: "smooth" }) }, 200);
     abrir_quizz(0, quizz_id);
 };
 
 function quit_quizz() {
     reset_variables();
-    window.scrollTo(0, 0);
+    const scroll_to_top = document.querySelector(`html`);
+    setTimeout(function () { scroll_to_top.scrollIntoView({ behavior: "smooth" }) }, 200);
     pagina_reset()
 };
 

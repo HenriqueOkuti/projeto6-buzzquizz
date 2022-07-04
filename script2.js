@@ -22,7 +22,7 @@ let objeto = {
 };
 
 function prosseguirParaCriarPerguntas() {
-    /*titulo = document.querySelector(".titulo-quizz").value;
+    titulo = document.querySelector(".titulo-quizz").value;
     tituloOk = (titulo.length >= 20 && titulo.length <= 65);
 
     imagemUrl = document.querySelector(".imagem-quizz").value;
@@ -32,9 +32,9 @@ function prosseguirParaCriarPerguntas() {
     qtdPerguntasOk = (qtdPerguntas >= 3);
 
     qtdNiveis = document.querySelector(".qtd-niveis").value;
-    qtdNiveisOk = (qtdNiveis >= 2);*/
+    qtdNiveisOk = (qtdNiveis >= 2);
 
-    titulo = document.querySelector(".titulo-quizz").value = "Título do quizz aqui";
+    /*titulo = document.querySelector(".titulo-quizz").value = "Título do quizz aqui";
     tituloOk = (titulo.length >= 20 && titulo.length <= 65);
 
     imagemUrl = document.querySelector(".imagem-quizz").value = "https://http.cat/411.jpg";
@@ -44,7 +44,7 @@ function prosseguirParaCriarPerguntas() {
     qtdPerguntasOk = (qtdPerguntas >= 3);
 
     qtdNiveis = document.querySelector(".qtd-niveis").value = "3";
-    qtdNiveisOk = (qtdNiveis >= 2);
+    qtdNiveisOk = (qtdNiveis >= 2);*/
     //////////////
     if (tituloOk && imagemUrlOk && qtdPerguntasOk && qtdNiveisOk) {
 
@@ -197,7 +197,7 @@ function verificarInputPerguntas(i) {
         isCorrectAnswer: false
     }
 
-    /*let textoPergunta = document.querySelector(`.textopergunta-${i}`).value;
+    let textoPergunta = document.querySelector(`.textopergunta-${i}`).value;
     textoPerguntaOk = (textoPergunta.length >= 20);
 
     let corFundo = document.querySelector(`.corpergunta-${i}`).value;
@@ -220,9 +220,9 @@ function verificarInputPerguntas(i) {
 
     respostaIncorreta3 = document.querySelector(`.respostai3-${i}`).value;
     imagemIncorreta3 = document.querySelector(`.urli3-${i}`).value;
-    respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== '') && conferirUrl(imagemIncorreta3) === true);*/
+    respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== '') && conferirUrl(imagemIncorreta3) === true);
 
-    let textoPergunta = document.querySelector(`.textopergunta-${i}`).value = "Texto da perguntinha";
+    /*let textoPergunta = document.querySelector(`.textopergunta-${i}`).value = "Texto da perguntinha";
     textoPerguntaOk = (textoPergunta.length >= 20);
 
     let corFundo = document.querySelector(`.corpergunta-${i}`).value = "#eeeeee";
@@ -245,7 +245,7 @@ function verificarInputPerguntas(i) {
 
     respostaIncorreta3 = document.querySelector(`.respostai3-${i}`).value = "";
     imagemIncorreta3 = document.querySelector(`.urli3-${i}`).value = "";
-    respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== '') && conferirUrl(imagemIncorreta3) === true);
+    respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== '') && conferirUrl(imagemIncorreta3) === true);*/
     ///////////
     caso1 = (respostaEImgIncorretas1Ok && respostaEImgIncorretas2Ok === false && respostaEImgIncorretas3Ok === false);
     caso2 = (respostaEImgIncorretas1Ok && respostaEImgIncorretas2Ok && (respostaEImgIncorretas3Ok === false));

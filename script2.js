@@ -453,9 +453,11 @@ function salvarLocalStorage(resposta) {
     quizzesCriados.push({
         id: `${resposta.data.id}`,
         title: resposta.data.title,
-        background_image: resposta.data.image
+        background_image: resposta.data.image,
+        key: resposta.data.key
     });
 
+    console.log(quizzesCriados);
     localStorage.setItem("quizzesCriados", JSON.stringify(quizzesCriados));
 
 }

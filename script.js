@@ -119,8 +119,10 @@ function quizzes_renderiza(quizzes) {
     let keys_object = JSON.parse(window.localStorage.getItem('quizzesCriados'));
 
     user_quizzes_id = [];
-    for (let i = 0; i < keys_object.length; i++) {
-        user_quizzes_id.push(Number(keys_object[i].id));
+    if (localStorage.getItem('quizzesCriados') !== null) {
+        for (let i = 0; i < keys_object.length; i++) {
+            user_quizzes_id.push(Number(keys_object[i].id));
+        }
     }
 
     //Clears the innerHTML from selected class

@@ -629,7 +629,7 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
   font-size: 18px;
   font-style: italic;
   font-weight: 400;
-  margin-bottom: 10px;
+  margin-top: 10px;
   border: solid 1px #d1d1d1;
   border-radius: 5px;
   padding-left: 20px;
@@ -648,6 +648,12 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
   background-color: #ffffff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
   margin-bottom: 15px;
+
+}
+
+.caracteristicas {
+  border-bottom: solid 20px #ffffff;
+  border-top: solid 15px #ffffff;
 }
 
 .img-legenda {
@@ -656,11 +662,6 @@ BUT: IT SHOULD BE width: 100vw; IF MOBILE LAYOUT ACTIVATES
   border-radius: 5px;
   position: relative;
   cursor: pointer;
-}
-
-.caracteristicas,
-.img-legenda {
-  height: 256px;
 }
 
 .pergunta,
@@ -729,7 +730,7 @@ input.url2 {
 }
 
 .outrasperguntas>.space {
-  margin-bottom: 25px;
+  margin-top: 25px;
 }
 
 .erro {
@@ -818,6 +819,17 @@ li {
   /*grid-template-columns: repeat(auto-fill, minmax(calc(5.5vw + 270px), 270px));*/
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1vw;
+}
+
+.erro-input {
+  background-color: #FFE9E9;
+}
+
+.texto-erro {
+  width: 94%;
+  color: #EC362D;
+  font-size: 16px;
+  margin-top: 4px;
 }
 
 

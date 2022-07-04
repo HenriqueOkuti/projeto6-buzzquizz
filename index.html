@@ -53,11 +53,15 @@
 
     <div class="informacoes-basicas escondido">
         <h2>Comece pelo começo</h2>
-        <div class=" caracteristicas">
+        <div class="caracteristicas">
             <input class="titulo-quizz" type="text" placeholder="Título do seu quizz">
-            <input class="imagem-quizz" type="text" placeholder="URL da imagem do seu quizz">
-            <input class="qtd-perguntas" type="text" placeholder="Quantidade de perguntas do quizz">
-            <input class="qtd-niveis" type="text" placeholder="Quantidade de níveis do quizz">
+            <span class="texto-erro tq"></span>
+            <input class="imagem-quizz" type="url" placeholder="URL da imagem do seu quizz">
+            <span class="texto-erro iq"></span>
+            <input class="qtd-perguntas" type="number" placeholder="Quantidade de perguntas do quizz">
+            <span class="texto-erro pq"></span>
+            <input class="qtd-niveis" type="number" placeholder="Quantidade de níveis do quizz">
+            <span class="texto-erro nq"></span>
         </div>
         <button class="botao-continuar" onclick="prosseguirParaCriarPerguntas(this)">Prosseguir para criar
             perguntas</button>

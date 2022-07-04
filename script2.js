@@ -47,6 +47,7 @@ function prosseguirParaCriarPerguntas() {
     qtdNiveisOk = (qtdNiveis >= 2);*/
     //////////////
     if (tituloOk && imagemUrlOk && qtdPerguntasOk && qtdNiveisOk) {
+
         document.querySelector(".informacoes-basicas").classList.add("escondido");
         document.querySelector(".criar-perguntas").classList.remove("escondido");
         objeto.title = titulo;
@@ -55,7 +56,8 @@ function prosseguirParaCriarPerguntas() {
         quantidadeDeNiveis();
 
     } else {
-        alert("Insira os dados corretamente!");
+        errosInputComeco();
+        //alert("Insira os dados corretamente!");
     }
 }
 
@@ -93,26 +95,58 @@ function quantidadeDePerguntas() {
             <div class="pergunta prgt-${i} escondido">
                 <h3 onclick="fecharCaixaPergunta(${i})">Pergunta ${i}</h3>
                 <input class="textopergunta-${i}" type="text" placeholder="Texto da pergunta">
-                <input class="corpergunta-${i}" type="text" placeholder="Cor de fundo da pergunta">
+                <span class="texto-erro tp-${i}"></span>
+                <input class="corpergunta-${i} cor" type="text" placeholder="Cor de fundo da pergunta">
+                <span class="texto-erro cp-${i}"></span>
                 <h3>Resposta correta</h3>
                 <input class="respostac-${i}" type="text" placeholder="Resposta correta">
+                <span class="texto-erro rc-${i}"></span>
                 <input class="urlc-${i}" type="text" placeholder="URL da imagem">
+                <span class="texto-erro uc-${i}"></span>
                 <h3>Respostas incorretas</h3>
                 <div class="outrasperguntas">
                     <input class="respostai1-${i}" type="text" placeholder="Resposta incorreta 1">
-                    <input class="urli1-${i} space" type="text" placeholder="URL da imagem 1">
+                    <span class="texto-erro ri-${i}"></span>
+                    <input class="urli1-${i}" type="text" placeholder="URL da imagem 1">
+                    <div class="texto-erro ui-${i}"></div>
 
-                    <input class="respostai2-${i}" type="text" placeholder="Resposta incorreta 2">
-                    <input class="urli2-${i} space" type="text" placeholder="URL da imagem 2">
+                    <input class="respostai2-${i} space" type="text" placeholder="Resposta incorreta 2">
+                    <span class="texto-erro rii-${i}"></span>
+                    <input class="urli2-${i}" type="text" placeholder="URL da imagem 2">
+                    <span class="texto-erro uii-${i}"></span>
 
-                    <input class="respostai3-${i}" type="text" placeholder="Resposta incorreta 3">
+                    <input class="respostai3-${i} space" type="text" placeholder="Resposta incorreta 3">
+                    <span class="texto-erro riii-${i}"></span>
                     <input class="urli3-${i}" type="text" placeholder="URL da imagem 3">
+                    <span class="texto-erro uiii-${i}"></span>
                 </div>
             </div>
         </li>
     `;
     }
 }
+let textoPerguntaOk;
+let corFundoOk;
+let respostaCorretaOk;
+let imagemCorretaOk;
+let respostaIncorreta1;
+let respostaEImgIncorretas1Ok;
+
+let respostaIncorreta2;
+let imagemIncorreta2;
+let respostaEImgIncorretas2Ok;
+
+let respostaIncorreta3;
+let imagemIncorreta3;
+let respostaEImgIncorretas3Ok;
+
+let caso1;
+let caso2;
+let caso3;
+
+
+
+
 
 function abrirCaixaPergunta(i) {
     document.querySelector(`.add-${i}`).classList.add("escondido");
@@ -129,6 +163,7 @@ function corHexadecimal(cor) {
     const regex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/i;
     return regex.test(cor);
 }
+
 
 function verificarInputPerguntas(i) {
 
@@ -163,58 +198,58 @@ function verificarInputPerguntas(i) {
     }
 
     let textoPergunta = document.querySelector(`.textopergunta-${i}`).value;
-    let textoPerguntaOk = (textoPergunta.length >= 20);
+    textoPerguntaOk = (textoPergunta.length >= 20);
 
     let corFundo = document.querySelector(`.corpergunta-${i}`).value;
-    let corFundoOk = ((corHexadecimal(corFundo) === true) && corFundo[0] === "#" && corFundo.length === 7);
+    corFundoOk = ((corHexadecimal(corFundo) === true) && corFundo[0] === "#" && corFundo.length === 7);
 
     let respostaCorreta = document.querySelector(`.respostac-${i}`).value;
-    let respostaCorretaOk = (respostaCorreta !== '');
+    respostaCorretaOk = (respostaCorreta !== '');
 
     let imagemCorreta = document.querySelector(`.urlc-${i}`).value;
-    let imagemCorretaOk = (conferirUrl(imagemCorreta) === true);
+    imagemCorretaOk = (conferirUrl(imagemCorreta) === true);
 
 
-    let respostaIncorreta1 = document.querySelector(`.respostai1-${i}`).value;
-    let imagemIncorreta1 = document.querySelector(`.urli1-${i}`).value;
-    let respostaEImgIncorretas1Ok = ((respostaIncorreta1 !== '') && conferirUrl(imagemIncorreta1) === true);
+    respostaIncorreta1 = document.querySelector(`.respostai1-${i}`).value;
+    imagemIncorreta1 = document.querySelector(`.urli1-${i}`).value;
+    respostaEImgIncorretas1Ok = ((respostaIncorreta1 !== '') && conferirUrl(imagemIncorreta1) === true);
 
-    let respostaIncorreta2 = document.querySelector(`.respostai2-${i}`).value;
-    let imagemIncorreta2 = document.querySelector(`.urli2-${i}`).value;
-    let respostaEImgIncorretas2Ok = ((respostaIncorreta2 !== '') && conferirUrl(imagemIncorreta2) === true);
+    respostaIncorreta2 = document.querySelector(`.respostai2-${i}`).value;
+    imagemIncorreta2 = document.querySelector(`.urli2-${i}`).value;
+    respostaEImgIncorretas2Ok = ((respostaIncorreta2 !== '') && conferirUrl(imagemIncorreta2) === true);
 
-    let respostaIncorreta3 = document.querySelector(`.respostai3-${i}`).value;
-    let imagemIncorreta3 = document.querySelector(`.urli3-${i}`).value;
-    let respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== '') && conferirUrl(imagemIncorreta3) === true);
+    respostaIncorreta3 = document.querySelector(`.respostai3-${i}`).value;
+    imagemIncorreta3 = document.querySelector(`.urli3-${i}`).value;
+    respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== '') && conferirUrl(imagemIncorreta3) === true);
 
     /*let textoPergunta = document.querySelector(`.textopergunta-${i}`).value = "Texto da perguntinha";
-    let textoPerguntaOk = (textoPergunta.length >= 20);
+    textoPerguntaOk = (textoPergunta.length >= 20);
 
     let corFundo = document.querySelector(`.corpergunta-${i}`).value = "#eeeeee";
-    let corFundoOk = corHexadecimal(corFundo);
+    corFundoOk = corHexadecimal(corFundo);
 
     let respostaCorreta = document.querySelector(`.respostac-${i}`).value = "Resposta Número 1";
-    let respostaCorretaOk = (respostaCorreta !== '');
+    respostaCorretaOk = (respostaCorreta !== '');
 
     let imagemCorreta = document.querySelector(`.urlc-${i}`).value = "https://http.cat/402.jpg";
-    let imagemCorretaOk = (conferirUrl(imagemCorreta) === true);
+    imagemCorretaOk = (conferirUrl(imagemCorreta) === true);
 
 
-    let respostaIncorreta1 = document.querySelector(`.respostai1-${i}`).value = "Resposta Número 2";
-    let imagemIncorreta1 = document.querySelector(`.urli1-${i}`).value = "https://http.cat/403.jpg";
-    let respostaEImgIncorretas1Ok = ((respostaIncorreta1 !== '') && conferirUrl(imagemIncorreta1) === true);
+    respostaIncorreta1 = document.querySelector(`.respostai1-${i}`).value = "Resposta Número 2";
+    imagemIncorreta1 = document.querySelector(`.urli1-${i}`).value = "https://http.cat/403.jpg";
+    respostaEImgIncorretas1Ok = ((respostaIncorreta1 !== '') && conferirUrl(imagemIncorreta1) === true);
 
-    let respostaIncorreta2 = document.querySelector(`.respostai2-${i}`).value = "Resposta Número 3";
-    let imagemIncorreta2 = document.querySelector(`.urli2-${i}`).value = "https://http.cat/409.jpg";
-    let respostaEImgIncorretas2Ok = ((respostaIncorreta2 !== '') && conferirUrl(imagemIncorreta2) === true);
+    respostaIncorreta2 = document.querySelector(`.respostai2-${i}`).value = "Resposta Número 3";
+    imagemIncorreta2 = document.querySelector(`.urli2-${i}`).value = "https://http.cat/409.jpg";
+    respostaEImgIncorretas2Ok = ((respostaIncorreta2 !== '') && conferirUrl(imagemIncorreta2) === true);
 
-    let respostaIncorreta3 = document.querySelector(`.respostai3-${i}`).value = "";
-    let imagemIncorreta3 = document.querySelector(`.urli3-${i}`).value = "";
-    let respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== '') && conferirUrl(imagemIncorreta3) === true);*/
+    respostaIncorreta3 = document.querySelector(`.respostai3-${i}`).value = "";
+    imagemIncorreta3 = document.querySelector(`.urli3-${i}`).value = "";
+    respostaEImgIncorretas3Ok = ((respostaIncorreta3 !== '') && conferirUrl(imagemIncorreta3) === true);*/
     ///////////
-    let caso1 = (respostaEImgIncorretas1Ok && respostaEImgIncorretas2Ok === false && respostaEImgIncorretas3Ok === false);
-    let caso2 = (respostaEImgIncorretas1Ok && respostaEImgIncorretas2Ok && (respostaEImgIncorretas3Ok === false));
-    let caso3 = (respostaEImgIncorretas1Ok && respostaEImgIncorretas2Ok && respostaEImgIncorretas3Ok);
+    caso1 = (respostaEImgIncorretas1Ok && respostaEImgIncorretas2Ok === false && respostaEImgIncorretas3Ok === false);
+    caso2 = (respostaEImgIncorretas1Ok && respostaEImgIncorretas2Ok && (respostaEImgIncorretas3Ok === false));
+    caso3 = (respostaEImgIncorretas1Ok && respostaEImgIncorretas2Ok && respostaEImgIncorretas3Ok);
 
 
 
@@ -241,12 +276,16 @@ function verificarInputPerguntas(i) {
 
         objeto.questions.push(objPerguntas);
 
+        errosInputPerguntas(i);
+
         return true;
     } else {
+        errosInputPerguntas(i);
         return false;
     }
 
 }
+
 
 function prosseguirParaCriarNiveis() {
 
@@ -262,7 +301,7 @@ function prosseguirParaCriarNiveis() {
         document.querySelector(".criar-niveis").classList.remove("escondido");
 
     } else {
-        alert("Insira os dados corretamente! Cada pergunta deve possuir no mínimo uma resposta incorreta, caso opte por mais de uma, estas devem ser preenchidas na ordem.")
+        //alert("Insira os dados corretamente! Cada pergunta deve possuir no mínimo uma resposta incorreta, caso opte por mais de uma, estas devem ser preenchidas na ordem.")
         objeto.questions = [];
     }
 
@@ -271,8 +310,22 @@ function prosseguirParaCriarNiveis() {
 
 // Criar quiz: Crie níveis::::::::: 
 
+let tituloNivel;
+let tituloNivelOk;
+
+let acertoNivel;
+let acertoNivelOk;
+
+let imagemNivel;
+let imagemNivelOk;
+
+let descricaoNivel;
+let descricaoNivelOk;
+
+let crieNiveis;
+
 function quantidadeDeNiveis() {
-    let crieNiveis = document.querySelector(".niveis");
+    crieNiveis = document.querySelector(".niveis");
 
     for (i = 1; i <= qtdNiveis; i++) {
         crieNiveis.innerHTML = crieNiveis.innerHTML + `
@@ -284,14 +337,19 @@ function quantidadeDeNiveis() {
             <div class="nivel nv-${i} escondido">
                 <h3 onclick="fecharCaixaNivel(${i})">Nível ${i}</h3>
                 <input class="titulonivel-${i}" type="text" placeholder="Título do nível">
-                <input class="acertonivel-${i}" type="text" placeholder="% de acerto mínima">
+                <span class="texto-erro tn-${i}"></span>
+                <input class="acertonivel-${i}" type="number" placeholder="% de acerto mínima">
+                <span class="texto-erro an-${i}"></span>
                 <input class="imgnivel-${i}" type="text" placeholder="URL da imagem do nível">
+                <span class="texto-erro in-${i}"></span>
                 <input class="descricaonivel-${i}" type="text" placeholder="Descrição do nível">
+                <span class="texto-erro dn-${i}"></span>
             </div>
         </li>
     `;
     }
 }
+
 
 function abrirCaixaNivel(i) {
     document.querySelector(`.addnv-${i}`).classList.add("escondido");
@@ -315,24 +373,23 @@ function finalizarQuizz() {
             minValue: ''
         }
 
-        let tituloNivel = document.querySelector(`.titulonivel-${i}`).value;
-        let tituloNivelOk = (tituloNivel.length >= 10);
+        tituloNivel = document.querySelector(`.titulonivel-${i}`).value;
+        tituloNivelOk = (tituloNivel.length >= 10);
 
-        let acertoNivel = document.querySelector(`.acertonivel-${i}`).value;
-        let acertoNivelOk = (acertoNivel >= 0 && acertoNivel <= 100);
+        acertoNivel = document.querySelector(`.acertonivel-${i}`).value;
+        acertoNivelOk = (acertoNivel >= 0 && acertoNivel <= 100 && acertoNivel !== '');
 
-        let imagemNivel = document.querySelector(`.imgnivel-${i}`).value;
-        let imagemNivelOk = conferirUrl(imagemNivel);
+        imagemNivel = document.querySelector(`.imgnivel-${i}`).value;
+        imagemNivelOk = conferirUrl(imagemNivel);
 
-        let descricaoNivel = document.querySelector(`.descricaonivel-${i}`).value;
-        let descricaoNivelOk = (descricaoNivel.length >= 30);
+        descricaoNivel = document.querySelector(`.descricaonivel-${i}`).value;
+        descricaoNivelOk = (descricaoNivel.length >= 30);
 
         /*let tituloNivel = document.querySelector(`.titulonivel-${i}`).value = "Título do Nível";
         let tituloNivelOk = (tituloNivel.length >= 10);
 
         let acertoNivel = document.querySelector(`.acertonivel-${i}`).value;
-        let acertoNivelOk = (acertoNivel >= 0 && acertoNivel <= 100);
-
+        let acertoNivelOk = (acertoNivel >= 0 && acertoNivel <= 100);Agora, decida os níveis
         let imagemNivel = document.querySelector(`.imgnivel-${i}`).value = "https://http.cat/401.jpg";
         let imagemNivelOk = conferirUrl(imagemNivel);
 
@@ -346,59 +403,92 @@ function finalizarQuizz() {
             objNivel.minValue = acertoNivel;
 
             objeto.levels.push(objNivel);
+            console.log("puxou 1");
+            errosInputNiveis(i);
+
         } else {
-            alert("Insira os dados corretamente!");
-            break
+            errosInputNiveis(i)
+            //alert("Insira os dados corretamente!");
+            //break
         }
     }
 
-    verificarSeAlgumNivelehRepetido();
-
+    quantidadesIguais();
 }
 
-function verificarSeAlgumNivelehZero() {
-    let numdenivel0 = 0;
-
-    for (let i = 1; i <= qtdNiveis; i++) {
-        if (Number(document.querySelector(`.acertonivel-${i}`).value) === 0) {
-            numdenivel0 = numdenivel0 + 1;
-        }
-    }
-
-    if (numdenivel0 >= 1) {
-        document.querySelector(".criar-niveis").classList.add("escondido");
-        document.querySelector(".quizz-pronto").classList.remove("escondido");
-        imagemQuizzPronto();
-        enviarQuizzCriado();
-    } else {
-        alert("Insira os dados corretamente. Um dos níveis deve possuir o valor 0 (zero).");
-        objeto.levels = [];
+function quantidadesIguais() {
+    if (objeto.levels.length == qtdNiveis) {
+        console.log("tamanhos iguais");
+        verificarSeAlgumNivelehZero();
     }
 }
+
+
 
 function verificarSeAlgumNivelehRepetido() {
 
     let contadorRepetidos = 0;
 
     for (let i = 1; i < qtdNiveis; i++) {
-        if (Number(document.querySelector(`.acertonivel-${i}`).value) === Number(document.querySelector(`.acertonivel-${i + 1}`).value)) {
+        if (document.querySelector(`.acertonivel-${i}`).value === document.querySelector(`.acertonivel-${i + 1}`).value) {
             contadorRepetidos = contadorRepetidos + 1;
         }
     }
 
     if (contadorRepetidos > 0) {
-        alert("Insira os dados corretamente. Verifique se algum nível está repetido.");
-        objeto.levels = [];
+        console.log("há niveis repetidos")
+        return true;
     } else {
-        verificarSeAlgumNivelehZero();
+        console.log("Não há niveis repetidos")
+        return false;
+    }
+}
+
+function verificarSeAlgumNivelehZero() {
+    console.log("verificando...")
+    let numdenivel0 = 0;
+
+    for (let i = 1; i <= qtdNiveis; i++) {
+        if (document.querySelector(`.acertonivel-${i}`).value == 0) {
+            numdenivel0 = numdenivel0 + 1;
+        }
+    }
+
+    if (numdenivel0 > 0) {
+        if (verificarSeAlgumNivelehRepetido() === false) {
+            document.querySelector(".criar-niveis").classList.add("escondido");
+            document.querySelector(".quizz-pronto").classList.remove("escondido");
+            imagemQuizzPronto();
+            enviarQuizzCriado();
+        } else if (verificarSeAlgumNivelehRepetido() === true) {
+            console.log("Para um melhor aproveitamento do quizz não repita nenhum nível.");
+            for (let j = 1; j <= qtdNiveis; j++) {
+                //document.querySelector(`.acertonivel-${j}`).value = "";
+                document.querySelector(`.acertonivel-${j}`).classList.add("erro-input");
+                document.querySelector(`.an-${j}`).innerHTML = '<span class="texto-erro">Insira um número entre 0 a 100, os níveis precisam ser diferentes entre si e pelo menos um deles 0. </span>';
+                //errosInputNiveis(i);
+            }
+            objeto.levels = [];
+        }
+    } else {
+        console.log("Pelo menos um dos níveis deve ser zero")
+        for (let j = 1; j <= qtdNiveis; j++) {
+            document.querySelector(`.acertonivel-${j}`).classList.add("erro-input");
+            document.querySelector(`.an-${j}`).innerHTML = '<span class="texto-erro">Insira um número entre 0 a 50, pelo menos um dos níveis deve ser 0. </span>';
+        }
+        //alert("Insira os dados corretamente. Um dos níveis deve possuir o valor 0 (zero).");
+        objeto.levels = [];
     }
 }
 
 
+
+
 // Criar quiz: Quizz Pronto::::::::: 
+let inserirImg;
 
 function imagemQuizzPronto() {
-    let inserirImg = document.querySelector(".quizz-img-legenda");
+    inserirImg = document.querySelector(".quizz-img-legenda");
 
     inserirImg.innerHTML += `
     <div class = "img-legenda" style="background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.8) 65.62%, rgba(0, 0, 0, 0.8) 100%), url(${objeto.image}); background-size: 100%;" onclick="acessarQuizz()">
@@ -408,20 +498,19 @@ function imagemQuizzPronto() {
 }
 
 function acessarQuizz(elemento) {
-    //visualizar o quizz criado (Tela 2) ?????????????;
     document.querySelector(".quizz-pronto").classList.add("escondido");
     document.querySelector(".conteudo").classList.remove("escondido");
     abrir_quizz(elemento, id_ultimo_quizz);
 }
 
-function voltarHome() {
+function voltarHome() { ////////////////VERIFICAR NULL OU ZERO
     document.querySelector(".conteudo").classList.remove("escondido");
 
-    if (localStorage.length === 0) {
+    if (localStorage.length === null) {
         document.querySelector(".caixa_usuario").classList.add("escondido");
         document.querySelector(".caixa_usuario2").classList.remove("escondido");
         window.location.reload();
-    } else if (localStorage.length !== 0) {
+    } else if (localStorage.length !== null) {
         window.location.reload();
     }
 }
@@ -440,7 +529,20 @@ function enviarQuizzCriado() {
 
 function erroAoEnviar(erro) {
     let status = erro.response.data;
-    alert(status)
+    alert(status);
+
+    objeto = {
+        title: '',
+        image: '',
+        questions: [],
+        levels: []
+    };
+
+    criePerguntas.innerHTML = "";
+    crieNiveis.innerHTML = "";
+    inserirImg.innerHTML = "";
+    window.location.reload();
+
 }
 
 function salvarLocalStorage(resposta) {
@@ -473,3 +575,243 @@ function filtrarPerguntasValidas() {
 // Variaveis adicionais (Henrique):
 let id_ultimo_quizz; //Essa variavel guarda o id do quizz postado
 let elemento = null; //Essa variavel serve para absolutamente nada mas eu esqueci de tirar ela
+
+
+
+
+///////////// BÔNUS MENSAGEM DE VERIFICAÇÃO INPUTS:
+
+
+function errosInputComeco() {
+    let erroTitulo = '<span class="texto-erro">Insira um título com no mínimo 20 caracteres</span>'
+    let erroMensagemT = document.querySelector(".tq");
+
+    if (!tituloOk) {
+        document.querySelector(".titulo-quizz").classList.add("erro-input");
+        erroMensagemT.innerHTML = erroTitulo;
+    } else {
+        document.querySelector(".titulo-quizz").classList.remove("erro-input");
+        erroMensagemT.innerHTML = '<span class="texto-erro tituloq"></span>'
+    }
+
+
+    let erroImagem = '<span class="texto-erro">O valor informado não é uma url válida</span>'
+    let erroMensagemI = document.querySelector(".iq");
+
+    if (!imagemUrlOk) {
+        document.querySelector(".imagem-quizz").classList.add("erro-input");
+        erroMensagemI.innerHTML = erroImagem;
+    } else {
+        document.querySelector(".imagem-quizz").classList.remove("erro-input");
+        erroMensagemI.innerHTML = '<span class="texto-erro tituloq"></span>'
+    }
+
+
+    let erroQtdPerguntas = '<span class="texto-erro">O quizz deve ter no mínimo 3 perguntas</span>'
+    let erroMensagemP = document.querySelector(".pq");
+
+    if (!qtdPerguntasOk) {
+        document.querySelector(".qtd-perguntas").classList.add("erro-input");
+        erroMensagemP.innerHTML = erroQtdPerguntas;
+    } else {
+        document.querySelector(".qtd-perguntas").classList.remove("erro-input");
+        erroMensagemP.innerHTML = '<span class="texto-erro tituloq"></span>'
+    }
+
+
+    let erroQtdNiveis = '<span class="texto-erro">O quizz deve ter no mínimo 2 níveis</span>'
+    let erroMensagemN = document.querySelector(".nq");
+
+    if (!qtdNiveisOk) {
+        document.querySelector(".qtd-niveis").classList.add("erro-input");
+        erroMensagemN.innerHTML = erroQtdNiveis;
+    } else {
+        document.querySelector(".qtd-niveis").classList.remove("erro-input");
+        erroMensagemN.innerHTML = '<span class="texto-erro tituloq"></span>'
+    }
+
+}
+
+
+function errosInputPerguntas(i) {
+
+    if (!textoPerguntaOk) {
+        document.querySelector(`.textopergunta-${i}`).classList.add("erro-input");
+        document.querySelector(`.tp-${i}`).innerHTML = '<span class="texto-erro">Insira uma pergunta com no mínimo 20 caracteres</span>';
+    } else {
+        document.querySelector(`.textopergunta-${i}`).classList.remove("erro-input");
+        document.querySelector(`.tp-${i}`).innerHTML = '<span class="texto-erro tp-${i}"></span>';
+    }
+
+    if (!corFundoOk) {
+        document.querySelector(`.corpergunta-${i}`).classList.add("erro-input");
+        document.querySelector(`.cp-${i}`).innerHTML = '<span class="texto-erro">Insira uma cor no formato hexadecimal</span>';
+    } else {
+        document.querySelector(`.corpergunta-${i}`).classList.remove("erro-input");
+        document.querySelector(`.cp-${i}`).innerHTML = '<span class="texto-erro cp-${i}"></span>';
+    }
+
+    if (!respostaCorretaOk) {
+        document.querySelector(`.respostac-${i}`).classList.add("erro-input");
+        document.querySelector(`.rc-${i}`).innerHTML = '<span class="texto-erro">Insira uma resposta correta</span>';
+    } else {
+        document.querySelector(`.respostac-${i}`).classList.remove("erro-input");
+        document.querySelector(`.rc-${i}`).innerHTML = '<span class="texto-erro rc-${i}"></span>';
+    }
+
+    if (!imagemCorretaOk) {
+        document.querySelector(`.urlc-${i}`).classList.add("erro-input");
+        document.querySelector(`.uc-${i}`).innerHTML = '<span class="texto-erro">O valor informado não é uma url válida</span>';
+    } else {
+        document.querySelector(`.urlc-${i}`).classList.remove("erro-input");
+        document.querySelector(`.uc-${i}`).innerHTML = '<span class="texto-erro uc-${i}"></span>';
+    }
+
+    if (respostaIncorreta1 === "") {
+        document.querySelector(`.respostai1-${i}`).classList.add("erro-input");
+        document.querySelector(`.ri-${i}`).innerHTML = '<span class="texto-erro">Insira uma resposta incorreta</span>';
+    } else {
+        document.querySelector(`.respostai1-${i}`).classList.remove("erro-input");
+        document.querySelector(`.ri-${i}`).innerHTML = '<span class="texto-erro ri-${i}"></span>';
+    }
+
+    if (conferirUrl(imagemIncorreta1) === false || imagemIncorreta1 === "") {
+        document.querySelector(`.urli1-${i}`).classList.add("erro-input");
+        document.querySelector(`.ui-${i}`).innerHTML = '<span class="texto-erro">O valor informado não é uma url válida</span>';
+    } else {
+        document.querySelector(`.urli1-${i}`).classList.remove("erro-input");
+        document.querySelector(`.ui-${i}`).innerHTML = '<span class="texto-erro ui-${i}"></span>';
+    }
+
+    if (respostaIncorreta1 === '') {
+        document.querySelector(`.respostai1-${i}`).classList.add("erro-input");
+        document.querySelector(`.ri-${i}`).innerHTML = '<span class="texto-erro">Insira uma resposta incorreta</span>';
+    } else {
+        document.querySelector(`.respostai1-${i}`).classList.remove("erro-input");
+        document.querySelector(`.ri-${i}`).innerHTML = '<span class="texto-erro ri-${i}"></span>';
+    }
+
+    if (imagemIncorreta2 !== "") {
+        if (conferirUrl(imagemIncorreta2) === false) {
+            document.querySelector(`.urli2-${i}`).classList.add("erro-input");
+            document.querySelector(`.uii-${i}`).innerHTML = '<span class="texto-erro">O valor informado não é uma url válida</span>';
+        } else {
+            document.querySelector(`.urli2-${i}`).classList.remove("erro-input");
+            document.querySelector(`.uii-${i}`).innerHTML = '<span class="texto-erro uii-${i}"></span>';
+        }
+
+        if (respostaIncorreta2 === '') {
+            document.querySelector(`.respostai2-${i}`).classList.add("erro-input");
+            document.querySelector(`.rii-${i}`).innerHTML = '<span class="texto-erro">Insira uma resposta incorreta</span>';
+        } else {
+            document.querySelector(`.respostai2-${i}`).classList.remove("erro-input");
+            document.querySelector(`.rii-${i}`).innerHTML = '<span class="texto-erro rii-${i}"></span>';
+        }
+    }
+
+    if ((respostaIncorreta2 !== "" && imagemIncorreta2 === "") || (conferirUrl(imagemIncorreta2) === false && imagemIncorreta2 !== "")) {
+        document.querySelector(`.urli2-${i}`).classList.add("erro-input");
+        document.querySelector(`.uii-${i}`).innerHTML = '<span class="texto-erro">O valor informado não é uma url válida</span>';
+    } else {
+        document.querySelector(`.urli2-${i}`).classList.remove("erro-input");
+        document.querySelector(`.uii-${i}`).innerHTML = '<span class="texto-erro uii-${i}"></span>';
+    }
+
+    if (respostaIncorreta3 !== "" && imagemIncorreta3 === "") {
+        document.querySelector(`.urli3-${i}`).classList.add("erro-input");
+        document.querySelector(`.uiii-${i}`).innerHTML = '<span class="texto-erro">O valor informado não é uma url válida</span>';
+        if (respostaIncorreta2 === "") {
+            document.querySelector(`.respostai2-${i}`).classList.add("erro-input");
+            document.querySelector(`.rii-${i}`).innerHTML = '<span class="texto-erro">Insira uma resposta incorreta</span>';
+        } else {
+            document.querySelector(`.respostai2-${i}`).classList.remove("erro-input");
+            document.querySelector(`.rii-${i}`).innerHTML = '<span class="texto-erro rii-${i}"></span>';
+        }
+
+        if (imagemIncorreta2 === "" || (conferirUrl(imagemIncorreta2) === false && imagemIncorreta2 !== "")) {
+            document.querySelector(`.urli2-${i}`).classList.add("erro-input");
+            document.querySelector(`.uii-${i}`).innerHTML = '<span class="texto-erro">O valor informado não é uma url válida</span>';
+        } else {
+            document.querySelector(`.urli2-${i}`).classList.remove("erro-input");
+            document.querySelector(`.uii-${i}`).innerHTML = '<span class="texto-erro uii-${i}"></span>';
+        }
+
+    } else {
+        document.querySelector(`.urli3-${i}`).classList.remove("erro-input");
+        document.querySelector(`.uiii-${i}`).innerHTML = '<span class="texto-erro uiii-${i}"></span>';
+    }
+
+
+
+    if (imagemIncorreta3 !== "") {
+        if (conferirUrl(imagemIncorreta3) === false) {
+            document.querySelector(`.urli3-${i}`).classList.add("erro-input");
+            document.querySelector(`.uiii-${i}`).innerHTML = '<span class="texto-erro">O valor informado não é uma url válida</span>';
+        } else {
+            document.querySelector(`.urli3-${i}`).classList.remove("erro-input");
+            document.querySelector(`.uiii-${i}`).innerHTML = '<span class="texto-erro uiii-${i}"></span>';
+        }
+
+        if (respostaIncorreta3 === '') {
+            document.querySelector(`.respostai3-${i}`).classList.add("erro-input");
+            document.querySelector(`.riii-${i}`).innerHTML = '<span class="texto-erro">Insira uma resposta incorreta</span>';
+        } else {
+            document.querySelector(`.respostai3-${i}`).classList.remove("erro-input");
+            document.querySelector(`.riii-${i}`).innerHTML = '<span class="texto-erro riii-${i}"></span>';
+        }
+
+        if (respostaIncorreta2 === "") {
+            document.querySelector(`.respostai2-${i}`).classList.add("erro-input");
+            document.querySelector(`.rii-${i}`).innerHTML = '<span class="texto-erro">Insira uma resposta incorreta</span>';
+        } else {
+            document.querySelector(`.respostai2-${i}`).classList.remove("erro-input");
+            document.querySelector(`.rii-${i}`).innerHTML = '<span class="texto-erro rii-${i}"></span>';
+        }
+
+        if (imagemIncorreta2 === "" || (conferirUrl(imagemIncorreta2) === false && imagemIncorreta2 !== "")) {
+            document.querySelector(`.urli2-${i}`).classList.add("erro-input");
+            document.querySelector(`.uii-${i}`).innerHTML = '<span class="texto-erro">O valor informado não é uma url válida</span>';
+        } else {
+            document.querySelector(`.urli2-${i}`).classList.remove("erro-input");
+            document.querySelector(`.uii-${i}`).innerHTML = '<span class="texto-erro uii-${i}"></span>';
+        }
+
+    }
+}
+
+
+function errosInputNiveis(i) {
+    if (!tituloNivelOk) {
+        document.querySelector(`.titulonivel-${i}`).classList.add("erro-input");
+        document.querySelector(`.tn-${i}`).innerHTML = '<span class="texto-erro">O título do nível deve conter no mínimo 10 caracteres</span>';
+    } else {
+        document.querySelector(`.titulonivel-${i}`).classList.remove("erro-input");
+        document.querySelector(`.tn-${i}`).innerHTML = '<span class="texto-erro tn-${i}"></span>';
+    }
+
+    if (!acertoNivelOk) {
+        document.querySelector(`.acertonivel-${i}`).classList.add("erro-input");
+        document.querySelector(`.an-${i}`).innerHTML = '<span class="texto-erro">Insira um número entre 0 a 100, pelo menos um dos níveis deve ser 0. </span>';
+    } else {
+        document.querySelector(`.acertonivel-${i}`).classList.remove("erro-input");
+        document.querySelector(`.an-${i}`).innerHTML = '<span class="texto-erro an-${i}"></span>';
+    }
+
+
+    if (!imagemNivelOk) {
+        document.querySelector(`.imgnivel-${i}`).classList.add("erro-input");
+        document.querySelector(`.in-${i}`).innerHTML = '<span class="texto-erro">O valor informado não é uma url válida</span>';
+    } else {
+        document.querySelector(`.imgnivel-${i}`).classList.remove("erro-input");
+        document.querySelector(`.in-${i}`).innerHTML = '<span class="texto-erro in-${i}"></span>';
+    }
+
+
+    if (!descricaoNivelOk) {
+        document.querySelector(`.descricaonivel-${i}`).classList.add("erro-input");
+        document.querySelector(`.dn-${i}`).innerHTML = '<span class="texto-erro">Insira uma descrição com no mínimo 30 caracteres</span>';
+    } else {
+        document.querySelector(`.descricaonivel-${i}`).classList.remove("erro-input");
+        document.querySelector(`.dn-${i}`).innerHTML = '<span class="texto-erro dn-${i}"></span>';
+    }
+}
